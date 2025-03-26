@@ -509,6 +509,14 @@ body {
         font-size: 24px;
     }
 
+    .ms-auto{
+        margin-left: 0 !important;
+    }
+
+    .me-auto{
+        margin-right: 0 !important;
+    }
+
     /* Title aur description font size adjust */
     .section-title {
         font-size: 22px;
