@@ -97,12 +97,33 @@ function currentSlide(index) {
 setInterval(nextSlide, 5000);
 
 // watch video
-document.getElementById("play-video").addEventListener("click", function () {
-    document.getElementById("video-modal").style.display = "flex";
+document.addEventListener("DOMContentLoaded", function () {
+    let modal = document.getElementById("video-modal");
+    let playButton = document.getElementById("play-video");
+    let closeButton = document.querySelector(".close");
+    let videoFrame = document.getElementById("video-frame");
+
+    // Ensure modal is hidden on page load (if CSS is overridden)
+    modal.style.display = "none";
+
+    // Play button click -> Open modal
+    playButton.addEventListener("click", function () {
+        modal.style.display = "flex";
+    });
+
+    // Close button click -> Hide modal
+    closeButton.addEventListener("click", function () {
+        modal.style.display = "none";
+        videoFrame.src = videoFrame.src; // Stop video
+    });
+
+    // Click outside modal -> Hide modal
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+            videoFrame.src = videoFrame.src; // Stop video
+        }
+    });
 });
 
-document.querySelector(".close").addEventListener("click", function () {
-    document.getElementById("video-modal").style.display = "none";
-    document.getElementById("video-frame").src = document.getElementById("video-frame").src; // Stop video on close
-});
 
