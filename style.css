@@ -185,7 +185,7 @@ body {
     }
 
     .mobile-slide {
-        width: 312px;
+        width: 240px;
         margin: 0 15px;
     }
 
@@ -193,19 +193,12 @@ body {
         bottom: 232px;
         
     }
-
-
-
-
-
 }
 
 /* Video Section */
 .video-container {
     display: flex;
     align-items: center;
-    position: absolute;
-    bottom:-208px;
     gap: 15px;
     width: 100%;
     justify-content: center;
