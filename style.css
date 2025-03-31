@@ -154,11 +154,11 @@ body {
     display: flex;
     transition: transform 0.3s ease-in-out;
     align-items: center;
-    gap: 40px;
+    gap: 50px;
 }
 
 .mobile-slide {
-    width: 180px;
+    width: 210px;
     max-width: 100%;
     height: auto;
     margin: 0 5px;
@@ -186,12 +186,8 @@ body {
     }
 
     .mobile-slide {
-
-        width: 240px;
-
-        width: 312px;
-
-        margin: 0 15px;
+    width: 182px;
+    margin: 0 15px;
     }
 
     .mobile-carousel {
@@ -205,7 +201,7 @@ body {
     display: flex;
     align-items: center;
     position: absolute;
-    bottom:-208px;
+    bottom:-468px;
     gap: 15px;
     width: 100%;
     justify-content: center;
@@ -248,7 +244,7 @@ body {
         gap: 10px;
         text-align: center;
         position: absolute;
-        bottom:-759px !important;
+        bottom:-480px !important;
     }
 
     .line {
@@ -409,17 +405,40 @@ body {
     color: #8D8D8D;
 }
 
-/* Mobile Frame */
-.mobile-frame {
-    position: relative;
+.mobile-frame-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    max-width: 300px;
+    max-width: 320px; 
+    /* margin: auto; */
+    position: relative;
 }
 
-.mobile-frame img {
+/* Video Wrapper */
+.video-wrapper {
+    position: relative;
     width: 100%;
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Video Styling */
+.video-wrapper video {
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    width: 96%;
+    height: 98%;
+    object-fit: cover;
+    border-radius: 40px;
+    z-index: 3;
+}
+
+/* Mobile Frame Overlay */
+.phone-overlay {
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 2; 
 }
 
 /* Semi Circles */
@@ -435,13 +454,13 @@ body {
 
 .left {
     top: 60%;
-    left: -20%;
+    left: -23%;
     transform: translateY(-50%);
 }
 
 .right {
     top: 60%;
-    right: -20%;
+    right: -23%;
     transform: translateY(-50%);
 }
 
@@ -484,40 +503,35 @@ body {
     .step-container {
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center align */
+        align-items: center;
         text-align: center;
     }
 
-    /* Mobile Image ko center mein laana */
-    .mobile-preview {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 40px;
+    .mobile-frame-container {
+        max-width: 260px;
     }
 
-    .mobile-preview img {
-        width: 250px; /* Responsive width */
-        max-width: 90%;
-        border-radius: 20px;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    .video-wrapper video {
+        top: 9%;
+        left: 13%;
+        width: 74%;
+        height: 78%;
     }
-
-    /* Steps ko proper spacing dena */
+   
     .step {
         max-width: 320px;
         text-align: center;
         margin-bottom: 40px;
     }
 
-    /* Icon ko adjust karna */
+  
     .icon-circle {
         width: 60px;
         height: 60px;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-bottom: 15px; /* Space below icon */
+        margin-bottom: 15px; 
     }
 
     .icon-circle i {
@@ -532,7 +546,7 @@ body {
         margin-right: 0 !important;
     }
 
-    /* Title aur description font size adjust */
+   
     .section-title {
         font-size: 22px;
     }
@@ -551,14 +565,31 @@ body {
 
     .left {
         top: 55%;
-        left: -14%;
+        left: -20%;
         transform: translateY(-50%);
     }
     
     .right {
         top: 55%;
-        right: -20%;
+        right: -13%;
         transform: translateY(-50%);
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-frame-container {
+        max-width: 254px;
+    }
+
+    .video-wrapper video {
+        position: absolute;
+        top: 1%;
+        left: 1%;
+        width: 98%;
+        height: 98%;
+        object-fit: cover;
+        border-radius: 30px;
+        z-index: 3;
     }
 }
 

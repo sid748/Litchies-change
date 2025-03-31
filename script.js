@@ -4,8 +4,37 @@ const carousel = document.querySelector(".carousel-container");
 const slides = document.querySelectorAll(".mobile-slide");
 const totalSlides = slides.length;
 const slideWidth = slides[0].offsetWidth + 10; // Adjusting for spacing
+let autoSlideInterval;
+let isScrolling = false;
 
+// Function to Auto Slide
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        let currentTransform = getComputedStyle(carousel).transform;
+        let currentX = currentTransform === "none" ? 0 : parseFloat(currentTransform.split(",")[4]);
+
+        if (Math.abs(currentX) >= (totalSlides - 1) * slideWidth) {
+            // Reset to first slide when reaching the end
+            carousel.style.transform = `translateX(0px)`;
+        } else {
+            // Move to the next slide
+            carousel.style.transform = `translateX(${currentX - slideWidth}px)`;
+        }
+    }, 3000); // Change slide every 3 seconds
+}
+
+// Function to Stop Auto Slide
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+// Scroll Event Listener
 window.addEventListener("scroll", () => {
+    if (!isScrolling) {
+        stopAutoSlide(); // Pause autoslide when scrolling
+    }
+    isScrolling = true;
+
     const currentScrollY = window.scrollY;
     const scrollDifference = currentScrollY - lastScrollY;
 
@@ -18,7 +47,17 @@ window.addEventListener("scroll", () => {
     }
 
     lastScrollY = currentScrollY;
+
+    // Resume autoslide after user stops scrolling
+    clearTimeout(window.resumeAutoSlide);
+    window.resumeAutoSlide = setTimeout(() => {
+        isScrolling = false;
+        startAutoSlide();
+    }, 3000); // Resume after 3 seconds of inactivity
 });
+
+// Start Auto Slide Initially
+startAutoSlide();
 
 // why choose us counter code here
 
