@@ -833,7 +833,7 @@ body {
 
 /* Accordion Button */
 .custom-accordion {
-    background: linear-gradient(to bottom, #ff7e5f, #feb47b) !important;
+    background: #fe8864 !important;
     color: rgba(31, 31, 57, 1);
     font-size: 18px;
     font-weight: bold;
@@ -863,7 +863,7 @@ body {
 
 /* Accordion Body */
 .accordion-body {
-    background: linear-gradient(to bottom, #ff7e5f, #feb47b) !important;
+    background: #fe8864 !important;
     color: #1e1e1e;
     padding: 20px 15px;
 }
