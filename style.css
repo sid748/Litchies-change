@@ -201,7 +201,7 @@ body {
     display: flex;
     align-items: center;
     position: absolute;
-    bottom:-468px;
+    bottom:-239px;
     gap: 15px;
     width: 100%;
     justify-content: center;
@@ -244,7 +244,7 @@ body {
         gap: 10px;
         text-align: center;
         position: absolute;
-        bottom:-480px !important;
+        bottom:-531px !important;
     }
 
     .line {
@@ -254,6 +254,10 @@ body {
     #video-frame{
         width: 100%;
         height: 150px;
+    }
+
+    .modal-content{
+        width:75% !important;
     }
 }
 
@@ -294,7 +298,7 @@ body {
 /* About section starts here */
 
 .about {
-    padding: 45px 0;
+    padding: 50px 0 !important;
 }
 
 .about .about-content h1 {
@@ -321,8 +325,8 @@ body {
 
 @media (max-width: 768px) {
     .about {
-        padding: 0
-       
+        padding:0 !important;
+        margin-bottom: -50px !important; 
     }
 
     .about .about-content h1 {
@@ -346,7 +350,7 @@ body {
 /* Main Section */
 .cashback-section {
     position: relative;
-    padding: 80px 20px;
+    padding: 50px 20px;
     text-align: center;
     overflow: hidden;
 }
@@ -454,13 +458,13 @@ body {
 
 .left {
     top: 60%;
-    left: -23%;
+    left: -19%;
     transform: translateY(-50%);
 }
 
 .right {
     top: 60%;
-    right: -23%;
+    right: -19%;
     transform: translateY(-50%);
 }
 
@@ -599,7 +603,7 @@ body {
     background: linear-gradient(to bottom, #ff7e5f, #feb47b);
     color: white;
     text-align: center;
-    padding: 80px 20px;
+    padding: 50px 20px;
     border-radius: 30px;
     position: relative;
 }
@@ -673,7 +677,7 @@ body {
 
 .testimonial-section {
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px;
 }
 
 .section-title {
@@ -812,11 +816,14 @@ body {
 }
 
 /* Faq section starts here */
+.mix{
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b) !important;
+}
 
 .faq-section {
     margin: auto;
     padding: 50px 20px;
-    background-color: #fde9e8;
+    /* background-color: #fde9e8; */
 }
 
 .faq-section .main-section {
@@ -826,7 +833,7 @@ body {
 
 /* Accordion Button */
 .custom-accordion {
-    background-color: #fde9e8 !important;
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b) !important;
     color: rgba(31, 31, 57, 1);
     font-size: 18px;
     font-weight: bold;
@@ -856,7 +863,7 @@ body {
 
 /* Accordion Body */
 .accordion-body {
-    background-color: #fde9e8 !important;
+    background: linear-gradient(to bottom, #ff7e5f, #feb47b) !important;
     color: #1e1e1e;
     padding: 20px 15px;
 }
@@ -867,7 +874,7 @@ body {
 }
 
 .accordion-item .accordion-collapse.show {
-    border-bottom: 1px solid #1F1F391A;
+    border-bottom: 1px solid linear-gradient(to bottom, #ff7e5f, #feb47b);
 }
 
 @media (max-width: 768px) {
@@ -894,7 +901,7 @@ body {
 /* lets connect section starts here */
 .app-promo {
     padding: 50px 20px;
-    background-color: #fde9e8;
+    /* background-color: #fde9e8; */
     color: #121212;
 }
 
@@ -988,7 +995,7 @@ body {
 .footer {
     background-color: #121212;
     color: #FFFFFF;
-    padding: 100px 40px;
+    padding: 80px 40px;
 }
 
 .footer .container {
@@ -1061,3 +1068,10 @@ body {
     background-color: #0e7dff !important;
     color: white;
 }
+
+@media (max-width: 768px) {
+    .mb-5{
+        margin-bottom: 0 !important;
+    }
+}
+

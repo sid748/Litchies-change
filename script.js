@@ -1,63 +1,33 @@
-// Mobile slider scroll code here
 let lastScrollY = window.scrollY;
 const carousel = document.querySelector(".carousel-container");
 const slides = document.querySelectorAll(".mobile-slide");
 const totalSlides = slides.length;
 const slideWidth = slides[0].offsetWidth + 10; // Adjusting for spacing
-let autoSlideInterval;
 let isScrolling = false;
 
-// Function to Auto Slide
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        let currentTransform = getComputedStyle(carousel).transform;
-        let currentX = currentTransform === "none" ? 0 : parseFloat(currentTransform.split(",")[4]);
-
-        if (Math.abs(currentX) >= (totalSlides - 1) * slideWidth) {
-            // Reset to first slide when reaching the end
-            carousel.style.transform = `translateX(0px)`;
-        } else {
-            // Move to the next slide
-            carousel.style.transform = `translateX(${currentX - slideWidth}px)`;
-        }
-    }, 3000); // Change slide every 3 seconds
-}
-
-// Function to Stop Auto Slide
-function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-}
-
-// Scroll Event Listener
+// Scroll Event Listener for Smooth Scrolling
 window.addEventListener("scroll", () => {
-    if (!isScrolling) {
-        stopAutoSlide(); // Pause autoslide when scrolling
-    }
     isScrolling = true;
-
     const currentScrollY = window.scrollY;
     const scrollDifference = currentScrollY - lastScrollY;
 
+    carousel.style.transition = "transform 0.5s ease-out"; // Smooth scrolling effect
+
     if (scrollDifference > 0) {
         // Scrolling Down - Move Carousel Left
-        carousel.style.transform = `translateX(-${Math.min(currentScrollY / 8, totalSlides * slideWidth)}px)`;
+        carousel.style.transform = `translateX(-${Math.min(currentScrollY / 6, totalSlides * slideWidth)}px)`;
     } else {
         // Scrolling Up - Move Carousel Right
-        carousel.style.transform = `translateX(${Math.max(-currentScrollY / 8, 0)}px)`;
+        carousel.style.transform = `translateX(${Math.max(-currentScrollY / 6, 0)}px)`;
     }
 
     lastScrollY = currentScrollY;
 
-    // Resume autoslide after user stops scrolling
-    clearTimeout(window.resumeAutoSlide);
-    window.resumeAutoSlide = setTimeout(() => {
+    clearTimeout(window.resumeScrollEffect);
+    window.resumeScrollEffect = setTimeout(() => {
         isScrolling = false;
-        startAutoSlide();
-    }, 3000); // Resume after 3 seconds of inactivity
+    }, 500); // Stop animation after 0.5s of no scrolling
 });
-
-// Start Auto Slide Initially
-startAutoSlide();
 
 // why choose us counter code here
 
