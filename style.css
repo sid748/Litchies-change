@@ -852,7 +852,7 @@ body {
 
 /* Accordion Button */
 .custom-accordion {
-    background: #fe8864 !important;
+    background: #ffffff!important;
     color: rgba(31, 31, 57, 1);
     font-size: 18px;
     font-weight: bold;
@@ -882,7 +882,7 @@ body {
 
 /* Accordion Body */
 .accordion-body {
-    background: #fe8864 !important;
+    background: #ffffff !important;
     color: #1e1e1e;
     padding: 20px 15px;
 }
