@@ -184,10 +184,10 @@ section {
 /* Responsive Adjustments */
 @media (min-width: 1200px) {
     .mobile-carousel {
-        top: 117%;
+        top: 81%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100%;
+        width: 100vw;
         max-width: 100%;
     }
     .mobile-slide {
