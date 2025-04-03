@@ -986,7 +986,7 @@ section {
 .accordion-body {
     background: #ffffff !important;
     color: #1e1e1e;
-    padding: 0px 15px 15px 15px;
+    padding: 0px 15px 10px 15px;
 }
 
 /* Show only bottom border when expanded */
