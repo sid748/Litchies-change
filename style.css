@@ -961,7 +961,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 15px 10px 15px;
+    padding: 20px 15px 6px 15px;
     border: none !important;
     box-shadow: none !important;
     transition: border-bottom 0.3s ease;
