@@ -1,32 +1,71 @@
-let lastScrollY = window.scrollY;
-const carousel = document.querySelector(".carousel-container");
-const slides = document.querySelectorAll(".mobile-slide");
-const totalSlides = slides.length;
-const slideWidth = slides[0].offsetWidth + 10; // Adjusting for spacing
-let isScrolling = false;
+document.addEventListener("DOMContentLoaded", function () {
+    let lastScrollY = window.scrollY;
+    const carousel = document.querySelector(".carousel-container");
+    const slides = document.querySelectorAll(".mobile-slide");
+    const totalSlides = slides.length;
+    let slideWidth = slides[0].offsetWidth + 15; // Adjust spacing
+    let isScrolling = false;
+    let currentIndex = 0;
+    let autoSlideInterval;
 
-// Scroll Event Listener for Smooth Scrolling
-window.addEventListener("scroll", () => {
-    isScrolling = true;
-    const currentScrollY = window.scrollY;
-    const scrollDifference = currentScrollY - lastScrollY;
+    // Function to move carousel based on scroll
+    function handleScroll() {
+        isScrolling = true;
+        const currentScrollY = window.scrollY;
+        const scrollDifference = currentScrollY - lastScrollY;
 
-    carousel.style.transition = "transform 0.5s ease-out"; // Smooth scrolling effect
+        let currentTransform = parseFloat(getComputedStyle(carousel).transform.split(",")[4]) || 0;
 
-    if (scrollDifference > 0) {
-        // Scrolling Down - Move Carousel Left
-        carousel.style.transform = `translateX(-${Math.min(currentScrollY / 6, totalSlides * slideWidth)}px)`;
-    } else {
-        // Scrolling Up - Move Carousel Right
-        carousel.style.transform = `translateX(${Math.max(-currentScrollY / 6, 0)}px)`;
+        if (scrollDifference > 0) {
+            // Scroll Down → Move Left
+            currentTransform = Math.max(currentTransform - slideWidth / 2, -(totalSlides * slideWidth - window.innerWidth));
+        } else {
+            // Scroll Up → Move Right
+            currentTransform = Math.min(currentTransform + slideWidth / 2, 0);
+        }
+
+        carousel.style.transition = "transform 0.5s ease-out";
+        carousel.style.transform = `translateX(${currentTransform}px)`;
+        lastScrollY = currentScrollY;
+
+        clearTimeout(window.resumeScrollEffect);
+        window.resumeScrollEffect = setTimeout(() => {
+            isScrolling = false;
+        }, 500);
     }
 
-    lastScrollY = currentScrollY;
+    // Auto-slide function
+    function autoSlide() {
+        if (!isScrolling) {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            let newTransformValue = -(currentIndex * slideWidth);
+            carousel.style.transition = "transform 0.8s ease-in-out";
+            carousel.style.transform = `translateX(${newTransformValue}px)`;
+        }
+    }
 
-    clearTimeout(window.resumeScrollEffect);
-    window.resumeScrollEffect = setTimeout(() => {
-        isScrolling = false;
-    }, 500); // Stop animation after 0.5s of no scrolling
+    // Start auto-slide
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(autoSlide, 3000);
+    }
+
+    // Stop auto-slide when user scrolls
+    function stopAutoSlide() {
+        clearInterval(autoSlideInterval);
+    }
+
+    // Event listeners
+    window.addEventListener("scroll", () => {
+        stopAutoSlide(); // Pause auto-slide during scrolling
+        handleScroll();
+        startAutoSlide(); // Restart auto-slide after scrolling stops
+    });
+
+    window.addEventListener("resize", () => {
+        slideWidth = slides[0].offsetWidth + 15;
+    });
+
+    startAutoSlide(); // Initialize auto-slide on page load
 });
 
 // why choose us counter code here
@@ -105,34 +144,30 @@ function currentSlide(index) {
 // Auto slide every 5 seconds
 setInterval(nextSlide, 5000);
 
-// watch video
-document.addEventListener("DOMContentLoaded", function () {
-    let modal = document.getElementById("video-modal");
-    let playButton = document.getElementById("play-video");
-    let closeButton = document.querySelector(".close");
-    let videoFrame = document.getElementById("video-frame");
+// floating video code here
+const video = document.getElementById("floatingVideo");
+const videoContainer = document.getElementById("videoContainer");
 
-    // Ensure modal is hidden on page load (if CSS is overridden)
-    modal.style.display = "none";
+function togglePlayPause() {
+    if (video.paused) {
+        video.play();
+        document.getElementById("playPauseBtn").innerHTML = "❚❚";
+    } else {
+        video.pause();
+        document.getElementById("playPauseBtn").innerHTML = "▶";
+    }
+}
 
-    // Play button click -> Open modal
-    playButton.addEventListener("click", function () {
-        modal.style.display = "flex";
-    });
+function toggleMute() {
+    video.muted = !video.muted;
+    document.getElementById("muteBtn").innerHTML = video.muted ? "🔇" : "🔊";
+}
 
-    // Close button click -> Hide modal
-    closeButton.addEventListener("click", function () {
-        modal.style.display = "none";
-        videoFrame.src = videoFrame.src; // Stop video
-    });
+function minimizeVideo() {
+    videoContainer.classList.toggle("minimized");
+}
 
-    // Click outside modal -> Hide modal
-    modal.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-            videoFrame.src = videoFrame.src; // Stop video
-        }
-    });
-});
-
+function closeVideo() {
+    videoContainer.style.display = "none";
+}
 
