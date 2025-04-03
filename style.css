@@ -237,7 +237,7 @@ section {
 
 @media (max-width: 500px) {
     .mobile-carousel {
-        top: 50%;
+        top: 117%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 100vw;
