@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Start auto-slide
     function startAutoSlide() {
-        autoSlideInterval = setInterval(autoSlide, 3000);
+        autoSlideInterval = setInterval(autoSlide, 5000);
     }
 
     // Stop auto-slide when user scrolls
