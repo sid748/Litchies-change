@@ -572,7 +572,7 @@ section {
 
     .mobile-carousel {
         position: absolute;
-        top: clamp(60%, 75vh, 79%);
+        top: clamp(40vh, 51vh, 65vh); /* Minimum 40vh, Ideal 51vh, Maximum 65vh */
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
