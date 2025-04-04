@@ -561,7 +561,7 @@ section {
 
 @media (min-width: 350px) and (max-width: 480px) {
     .swiper-slide img {
-        max-width: 42vw; 
+        max-width: min(42vw, 180px); /* Ensure it never gets too big */
         width: auto;
     }
 
@@ -572,21 +572,20 @@ section {
 
     .mobile-carousel {
         position: absolute;
-        top: clamp(40vh, 57vh, 65vh); /* Minimum 40vh, Ideal 51vh, Maximum 65vh */
+        top: clamp(45vh, 57vh, 65vh); /* Adjusted for better placement */
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
         max-width: 100%;
         z-index: 10;
     }
-    
 
     .swiper-slide {
         display: flex !important;
         justify-content: center;
         align-items: center;
-        max-width: 241px !important; 
-        width: 100%; /* Ensures proper scaling */
+        max-width: min(241px, 50vw) !important; /* Ensures perfect scaling */
+        width: 100%;
     }
 }
 
