@@ -532,7 +532,7 @@ section {
 
 @media only screen and (max-width: 600px) {
     .swiper-slide img {
-        width: 70%;
+        width: min(70%, 180px); /* 70% or max 180px */
     }
 
     .swiper-slide-active img {
@@ -542,9 +542,9 @@ section {
 
     .mobile-carousel {
         position: absolute;
-        top: 80%;
+        top: clamp(55vh, 65vh, 80vh);
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         width: 100%;
         max-width: 100%;
         z-index: 10;
@@ -554,7 +554,8 @@ section {
         display: flex !important;
         justify-content: center;
         align-items: center;
-        width: 49% !important;
+        max-width: min(240px, 48vw) !important;
+        width: 100%;
     }
 }
 
