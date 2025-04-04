@@ -137,8 +137,10 @@ section {
     margin-bottom: 20px;
 }
 
+
+
 .btn-group button:hover {
-    background-color: #0e7dff;
+    background-color: #0e7dff !important;
     color: white;
 }
 
@@ -696,7 +698,7 @@ section {
     
     .right {
         top: 55%;
-        right: -13%;
+        right: -8%;
         transform: translateY(-50%);
     }
 }
@@ -727,6 +729,14 @@ section {
     padding: 50px 20px;
     border-radius: 30px;
     position: relative;
+}
+
+.why-choose h2{
+    font-size:40px;
+}
+
+.why-choose p{
+    font-size:18px;
 }
 
 .icon-box {
@@ -798,7 +808,7 @@ section {
 
 .testimonial-section {
     text-align: center;
-    padding: 60px 20px;
+    padding: 100px 20px;
 }
 
 .section-title {
@@ -950,6 +960,7 @@ section {
 .faq-section .main-section {
     font-size: 40px;
     font-weight: 700;
+    color: #ffffff;
 }
 
 /* Accordion Button */
@@ -961,7 +972,7 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 15px 6px 15px;
+    padding: 20px 25px 6px 25px;
     border: none !important;
     box-shadow: none !important;
     transition: border-bottom 0.3s ease;
@@ -986,7 +997,7 @@ section {
 .accordion-body {
     background: #ffffff !important;
     color: #1e1e1e;
-    padding: 0px 15px 10px 15px;
+    padding: 0px 25px 10px 25px;
 }
 
 /* Show only bottom border when expanded */
@@ -1030,13 +1041,13 @@ section {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 15px;
-    color: #1F1F39;
+    color: #121212;
 }
 
 .content p {
     font-size: 18px;
     font-weight: 400;
-    color: rgba(31, 31, 57, 0.7);
+    color:#121212;
 }
 
 .content .btn-custom {
@@ -1131,6 +1142,7 @@ section {
 
 .footer a:hover {
     color: #ffffff;
+    background-color: #0e7dff;
 }
 
 .footer-logo {
