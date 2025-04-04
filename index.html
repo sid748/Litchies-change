@@ -17,6 +17,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
 
+        <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+
     <!-- aos css link here -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
@@ -27,7 +31,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container nav-tap ">
             <a class="navbar-brand" href="#">
-                <img src="./images/Litchies-logo.png" alt="Litchies"> Litchies
+                <img src="./images/applogobar (1).png" alt="Litchies"> Litchies
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -57,19 +61,20 @@
 
     <!-- Mobile Carousel Section -->
     <section class="mobile-carousel">
-        <div class="carousel-container">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
-            <img src="./images/slider.png" alt="Mobile App" class="mobile-slide">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="./images/phone 2.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 3.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 4.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 5.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 1.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 6.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 7.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 8.png" alt="Mobile App"></div>
+                <div class="swiper-slide"><img src="./images/phone 9.png" alt="Mobile App"></div>
+            </div>
         </div>
     </section>
-    
-
-   
-    
     
     
 
@@ -82,7 +87,7 @@
                 <div class="about-section">
                     <div class="about-content text-center">
                         <h1 data-aos="fade-up" data-aos-duration="2000">About Us</h1>
-                        <p data-aos="fade-up" data-aos-duration="2000">Litchies is designed to make your local shopping experience effortless, rewarding, and budget-friendly. Whether you’re visiting a big store or a small shop in Agra, our app ensures that you get <strong>exclusive discounts </strong>and <strong>exciting cashback</strong> on every purchase. We empower customers to shop locally while feeling like a boss! Our goal is to make shopping in <strong>Agra</strong> more convenient, budget-friendly, and rewarding. Discover nearby shops, claim discounts, and earn cashback effortlessly—all through the Litchies app.</p>
+                        <p data-aos="fade-up" data-aos-duration="2000">Litchies is designed to make your local shopping experience effortless, rewarding, and budget-friendly. Whether you’re visiting a big store or a small shop in Agra, our app ensures that you get <b>exclusive discounts </b>and <b>exciting cashback</b> on every purchase. We empower customers to shop locally while feeling like a boss! Our goal is to make shopping in <b>Agra </b>more convenient, budget-friendly, and rewarding. Discover nearby shops, claim discounts, and earn cashback effortlessly—all through the Litchies app.</p>
                     </div>
                 </div>
             </div>
@@ -399,7 +404,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="2000">
-                    <img src="images/mobile-connect.png" alt="Litchies App" class="img-fluid mobile-img w-50">
+                    <img src="images/Litchess2.png" alt="Litchies App" class="img-fluid mobile-img w-50">
                 </div>
             </div>
         </div>
@@ -413,24 +418,25 @@
     <footer class="footer">
         <div class="container pt-5">
             <div class="row align-items-center">
-                <div class="col-md-3 text-start mb-5 pb-4">
+                <div class="col-md-4 text-start mb-5 pb-4">
                     <div class="footer-logo">
-                        <img src="images/footer-logo.png" alt="Litchies">
+                        <img src="images/applogobar (1).png" alt="Litchies">
                         <h5 class="mb-0">Litchies</h5>
                     </div>
-                    <p class="mt-2">hello@litchiesapp.com</p>
+                    <p class="mt-2">litchies2024@gmail.com</p>
                     <p>7457804316</p>
                 </div>
-                <div class="col-md-3 text-start">
+                <div class="col-md-4 text-start">
                     <h5 class="pb-3">Company</h5>
                     <ul class="list-unstyled">
-                        <li class="pb-3"><a href="#">Home</a></li>
-                        <li class="pb-3"><a href="#">About</a></li>
-                        <li class="pb-3"><a href="#">Services</a></li>
-                        <li class="pb-3"><a href="#">Contact</a></li>
+                        <li class="pb-3"><a href="index.html">Home</a></li>
+                        <li class="pb-3"><a href="#about-us">About</a></li>
+                        <li class="pb-3"><a href="#why-choose-us">Services</a></li>
+                        <li class="pb-3"><a href="#app-promo">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-md-3 text-start">
+
+                <!-- <div class="col-md-3 text-start">
                     <h5 class="pb-3">Contact</h5>
                     <ul class="list-unstyled">
                         <li class="pb-3"><a href="#">Help</a></li>
@@ -438,14 +444,14 @@
                         <li class="pb-3"><a href="#">Press</a></li>
                         <li class="pb-3"><a href="#">Terms & Conditions</a></li>
                     </ul>
-                </div>
-                <div class="col-md-2 text-start">
+                </div> -->
+                <div class="col-md-4 text-start">
                     <div class="social-icons pb-3">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <p class="mt-3">Let’s try out!</p>
+                    <p class="">Let’s try out!</p>
                     <div class="store-buttons">
                         <a href="https://apps.apple.com/in/app/litchies/id6511238052" class="mb-3" target="_blank"><img src="images/Appstore.png" alt="">App Store</a>
                         <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN" target="_blank"><img src="images/Playstore.png" alt="">Play Store</a>
@@ -469,6 +475,10 @@
             <button onclick="closeVideo()">×</button>
         </div>
     </div>
+
+    
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script src="script.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -1,72 +1,38 @@
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
-    const carousel = document.querySelector(".carousel-container");
-    const slides = document.querySelectorAll(".mobile-slide");
-    const totalSlides = slides.length;
-    let slideWidth = slides[0].offsetWidth + 15; // Adjust spacing
-    let isScrolling = false;
-    let currentIndex = 0;
-    let autoSlideInterval;
 
-    // Function to move carousel based on scroll
-    function handleScroll() {
-        isScrolling = true;
-        const currentScrollY = window.scrollY;
-        const scrollDifference = currentScrollY - lastScrollY;
+    // Initialize Swiper
+    let swiper = new Swiper(".mySwiper", {
+        loop: true,
+        slidesPerView: 2, 
+        centeredSlides: true,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 5,
+            }
+        }
+    });
 
-        let currentTransform = parseFloat(getComputedStyle(carousel).transform.split(",")[4]) || 0;
+    // Scroll Effect - Move slides left or right
+    window.addEventListener("scroll", function () {
+        let currentScrollY = window.scrollY;
+        let scrollDifference = currentScrollY - lastScrollY;
 
         if (scrollDifference > 0) {
-            // Scroll Down → Move Left
-            currentTransform = Math.max(currentTransform - slideWidth / 2, -(totalSlides * slideWidth - window.innerWidth));
+            swiper.slideNext(); // Scroll down → move left
         } else {
-            // Scroll Up → Move Right
-            currentTransform = Math.min(currentTransform + slideWidth / 2, 0);
+            swiper.slidePrev(); // Scroll up → move right
         }
 
-        carousel.style.transition = "transform 0.5s ease-out";
-        carousel.style.transform = `translateX(${currentTransform}px)`;
         lastScrollY = currentScrollY;
-
-        clearTimeout(window.resumeScrollEffect);
-        window.resumeScrollEffect = setTimeout(() => {
-            isScrolling = false;
-        }, 500);
-    }
-
-    // Auto-slide function
-    function autoSlide() {
-        if (!isScrolling) {
-            currentIndex = (currentIndex + 1) % totalSlides;
-            let newTransformValue = -(currentIndex * slideWidth);
-            carousel.style.transition = "transform 0.8s ease-in-out";
-            carousel.style.transform = `translateX(${newTransformValue}px)`;
-        }
-    }
-
-    // Start auto-slide
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(autoSlide, 5000);
-    }
-
-    // Stop auto-slide when user scrolls
-    function stopAutoSlide() {
-        clearInterval(autoSlideInterval);
-    }
-
-    // Event listeners
-    window.addEventListener("scroll", () => {
-        stopAutoSlide(); // Pause auto-slide during scrolling
-        handleScroll();
-        startAutoSlide(); // Restart auto-slide after scrolling stops
     });
-
-    window.addEventListener("resize", () => {
-        slideWidth = slides[0].offsetWidth + 15;
-    });
-
-    startAutoSlide(); // Initialize auto-slide on page load
 });
+
 
 // why choose us counter code here
 
@@ -170,4 +136,35 @@ function minimizeVideo() {
 function closeVideo() {
     videoContainer.style.display = "none";
 }
+
+
+// faq section starts here
+document.addEventListener("DOMContentLoaded", function () {
+    const accordionButtons = document.querySelectorAll(".accordion-button");
+
+    accordionButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const icon = this.querySelector(".answer-btn");
+
+            // Check if the clicked button is collapsed or expanded
+            setTimeout(() => {
+                if (this.classList.contains("collapsed")) {
+                    icon.textContent = "+";
+                } else {
+                    icon.textContent = "−";
+                }
+            }, 200); // Adding a slight delay to ensure correct toggle
+        });
+    });
+
+    // Set initial state when page loads
+    document.querySelectorAll(".accordion-collapse.show").forEach((item) => {
+        const btn = item.previousElementSibling.querySelector(".answer-btn");
+        if (btn) {
+            btn.textContent = "−";
+        }
+    });
+});
+
+
 
