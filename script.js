@@ -1,3 +1,38 @@
+// navigation bar code here
+document.addEventListener("DOMContentLoaded", function () {
+    let navbarToggler = document.querySelector(".navbar-toggler");
+    let navbarCollapse = document.querySelector(".navbar-collapse");
+    let navLinks = document.querySelectorAll(".nav-link");
+
+    // Navbar close when clicking on a nav item
+    navLinks.forEach(function (link) {
+        link.addEventListener("click", function () {
+            if (navbarCollapse.classList.contains("show")) {
+                navbarToggler.click();
+            }
+        });
+    });
+
+    // Navbar close when clicking outside
+    document.addEventListener("click", function (event) {
+        let isClickInside = navbarCollapse.contains(event.target) || navbarToggler.contains(event.target);
+        if (!isClickInside && navbarCollapse.classList.contains("show")) {
+            navbarToggler.click();
+        }
+    });
+
+    // Navbar toggler par border remove karna
+    navbarToggler.addEventListener("click", function () {
+        setTimeout(() => {
+            navbarToggler.style.outline = "none";
+            navbarToggler.style.boxShadow = "none";
+        }, 300);
+    });
+});
+
+
+
+// mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
 
