@@ -617,14 +617,14 @@ section {
 }
 
 .left {
-    top: 60%;
-    left: -19%;
+    top: 60% !important;
+    left: -19% !important;
     transform: translateY(-50%);
 }
 
 .right {
-    top: 60%;
-    right: -19%;
+    top: 60% !important;
+    right: -19% !important;
     transform: translateY(-50%);
 }
 
