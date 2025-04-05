@@ -35,56 +35,62 @@ document.addEventListener("DOMContentLoaded", function () {
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
-  
-    // Initialize Swiper
-    let swiper = new Swiper(".mySwiper", {
-      loop: true,
-      centeredSlides: true,
-      spaceBetween: 10,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
+
+    // ✅ Swiper initialization
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        centeredSlides: true,
+        spaceBetween: 10,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
         },
-        480: {
-          slidesPerView: 2,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        992: {
-          slidesPerView: 4,
-        },
-        1200: {
-          slidesPerView: 5,
-        },
-        1400: {
-          slidesPerView: 6,
-        },
-      },
-    });
-  
-    // Scroll-based slide effect (safe scroll check)
-    window.addEventListener("scroll", function () {
-      let currentScrollY = window.scrollY;
-      let scrollDiff = currentScrollY - lastScrollY;
-  
-      // Prevent glitch when at top or very fast scroll
-      if (Math.abs(scrollDiff) > 5 && currentScrollY > 50) {
-        if (scrollDiff > 0) {
-          swiper.slideNext();
-        } else {
-          swiper.slidePrev();
+        breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            480: {
+                slidesPerView: 2,
+            },
+            768: {
+                slidesPerView: 3,
+            },
+            992: {
+                slidesPerView: 4,
+            },
+            1200: {
+                slidesPerView: 5,
+            },
+            1400: {
+                slidesPerView: 6,
+            }
         }
-      }
-  
-      lastScrollY = currentScrollY;
     });
-  });
-  
+
+    // ✅ Scroll to slide effect
+    let throttleTimeout;
+
+    window.addEventListener("scroll", function () {
+        const currentScrollY = window.scrollY;
+        const scrollDiff = currentScrollY - lastScrollY;
+
+        // Throttle scroll for performance
+        if (!throttleTimeout) {
+            throttleTimeout = setTimeout(() => {
+                if (Math.abs(scrollDiff) > 5) {
+                    if (scrollDiff > 0) {
+                        swiper.slideNext();
+                    } else {
+                        swiper.slidePrev();
+                    }
+                }
+                lastScrollY = currentScrollY;
+                throttleTimeout = null;
+            }, 150); // Adjust this for speed/smoothness
+        }
+    });
+});
+
 // why choose us counter code here
 
 
