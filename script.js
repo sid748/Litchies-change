@@ -1,36 +1,63 @@
 // navigation bar code here
-document.addEventListener("DOMContentLoaded", function () {
-    let navbarToggler = document.querySelector(".navbar-toggler");
-    let navbarCollapse = document.querySelector(".navbar-collapse");
-    let navLinks = document.querySelectorAll(".nav-link");
+document.addEventListener("DOMContentLoaded", function() {
+    const navbar = document.querySelector(".navbar");
+    const navbarToggler = document.querySelector(".navbar-toggler");
+    const navbarCollapse = document.querySelector(".navbar-collapse");
+    const navLinks = document.querySelectorAll(".nav-link");
+    let lastScroll = 0;
+    const scrollThreshold = 100;
 
-    // Navbar close when clicking on a nav item
-    navLinks.forEach(function (link) {
-        link.addEventListener("click", function () {
+    // Scroll hide/show functionality
+    window.addEventListener("scroll", function() {
+        const currentScroll = window.pageYOffset;
+        
+        // Add/remove scrolled class
+        if (currentScroll > 50) {
+            navbar.classList.add("navbar-scrolled");
+        } else {
+            navbar.classList.remove("navbar-scrolled");
+        }
+
+        // Hide/show logic
+        if (currentScroll <= 0) {
+            navbar.classList.remove("navbar-hide");
+            return;
+        }
+
+        if (!navbarCollapse.classList.contains("show")) {
+            if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+                navbar.classList.add("navbar-hide");
+            } else if (currentScroll < lastScroll) {
+                navbar.classList.remove("navbar-hide");
+            }
+        }
+        
+        lastScroll = currentScroll;
+    });
+
+    // Existing navbar functionality
+    navLinks.forEach(function(link) {
+        link.addEventListener("click", function() {
             if (navbarCollapse.classList.contains("show")) {
                 navbarToggler.click();
             }
         });
     });
 
-    // Navbar close when clicking outside
-    document.addEventListener("click", function (event) {
+    document.addEventListener("click", function(event) {
         let isClickInside = navbarCollapse.contains(event.target) || navbarToggler.contains(event.target);
         if (!isClickInside && navbarCollapse.classList.contains("show")) {
             navbarToggler.click();
         }
     });
 
-    // Navbar toggler par border remove karna
-    navbarToggler.addEventListener("click", function () {
+    navbarToggler.addEventListener("click", function() {
         setTimeout(() => {
             navbarToggler.style.outline = "none";
             navbarToggler.style.boxShadow = "none";
         }, 300);
     });
 });
-
-
 
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function() {
