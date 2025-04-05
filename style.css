@@ -353,95 +353,158 @@ section {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 300px;
-    height: 170px;
+    width: 280px;
+    height: 160px;
     background: black;
-    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
 }
 
 .floating-video video {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
 }
 
-.floating-video .controls {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+.controls {
     display: flex;
-    gap: 5px;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px;
+    background: rgba(0,0,0,0.7);
 }
 
-.floating-video .controls button {
-    background: rgba(0, 0, 0, 0.7);
+.controls button {
+    background: rgba(255,255,255,0.2);
     color: white;
     border: none;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 12px;
-    width: 30px;
-    height: 30px;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
 }
 
-/* Minimized Video */
+.controls button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Video States */
 .minimized {
-    width: 150px !important;
-    height: 100px !important;
+    width: 120px !important;
+    height: 80px !important;
 }
 
-.minimized .controls {
-    top: 10px;
-    right: 2px;
+.fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    border-radius: 0 !important;
 }
 
-.minimized .controls button {
-    width: 20px;
-    height: 20px;
-    font-size: 10px;
+.fullscreen video {
+    height: calc(100% - 50px) !important;
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 500px) {
+/* Play Toggle Icon */
+.video-toggle-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
     .floating-video {
-        width: 150px;
+        width: 220px;
+        height: 130px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .controls button {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .minimized {
+        width: 100px !important;
+        height: 70px !important;
+    }
+    
+    .video-toggle-icon {
+        width: 36px;
+        height: 36px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-video {
+        width: 180px;
+        height: 110px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .controls {
+        padding: 6px;
+        gap: 6px;
+    }
+    
+    .controls button {
+        width: 24px;
+        height: 24px;
+        font-size: 11px;
+    }
+    
+    .minimized {
+        width: 80px !important;
+        height: 60px !important;
+    }
+    
+    .video-toggle-icon {
+        width: 32px;
+        height: 32px;
+        bottom: 10px;
+        right: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .floating-video {
+        width: 160px;
         height: 100px;
     }
-
-    .floating-video .controls {
-        position: absolute;
-        top: 8px;
-        right: 5px;
-        display: flex;
-        gap: 5px;
+    
+    .controls button {
+        width: 22px;
+        height: 22px;
     }
-
-    .floating-video .controls button {
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        border: none;
-        padding: 5px;
-        cursor: pointer;
-        border-radius: 5px;
-        font-size: 12px;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
 }
 
 /* About section starts here */

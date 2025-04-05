@@ -156,31 +156,77 @@ setInterval(nextSlide, 5000);
 
 // floating video code here
 const video = document.getElementById("floatingVideo");
-const videoContainer = document.getElementById("videoContainer");
+        const videoContainer = document.getElementById("videoContainer");
+        const videoToggleIcon = document.getElementById("videoToggleIcon");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const fullscreenBtn = document.getElementById("fullscreenBtn");
+        const closeBtn = document.getElementById("closeBtn");
 
-function togglePlayPause() {
-    if (video.paused) {
-        video.play();
-        document.getElementById("playPauseBtn").innerHTML = "❚❚";
-    } else {
-        video.pause();
-        document.getElementById("playPauseBtn").innerHTML = "▶";
-    }
-}
+        // Toggle play/pause
+        playPauseBtn.addEventListener('click', function() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.textContent = "❚❚";
+            } else {
+                video.pause();
+                playPauseBtn.textContent = "▶";
+            }
+        });
 
-function toggleMute() {
-    video.muted = !video.muted;
-    document.getElementById("muteBtn").innerHTML = video.muted ? "🔇" : "🔊";
-}
+        // Toggle mute
+        muteBtn.addEventListener('click', function() {
+            video.muted = !video.muted;
+            muteBtn.textContent = video.muted ? "🔇" : "🔊";
+        });
 
-function minimizeVideo() {
-    videoContainer.classList.toggle("minimized");
-}
+        // Toggle fullscreen
+        fullscreenBtn.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                videoContainer.requestFullscreen().catch(err => {
+                    console.error("Fullscreen error:", err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
 
-function closeVideo() {
-    videoContainer.style.display = "none";
-}
+        // Close video
+        closeBtn.addEventListener('click', function() {
+            video.pause();
+            videoContainer.style.display = "none";
+            videoToggleIcon.style.display = "flex";
+        });
 
+        // Restore video
+        videoToggleIcon.addEventListener('click', function() {
+            videoContainer.style.display = "flex";
+            videoToggleIcon.style.display = "none";
+            video.play();
+        });
+
+        // Handle fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                videoContainer.classList.remove("fullscreen");
+            } else {
+                videoContainer.classList.add("fullscreen");
+            }
+        });
+
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            if (document.fullscreenElement) {
+                setTimeout(() => {
+                    videoContainer.style.width = "100%";
+                    videoContainer.style.height = "100%";
+                }, 300);
+            }
+        });
+
+
+
+        
 
 // faq section starts here
 document.addEventListener("DOMContentLoaded", function () {

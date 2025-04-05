@@ -45,6 +45,9 @@
                     <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
                 </ul>
             </div>
+            <div class="video-toggle-icon" id="videoToggleIcon" onclick="restoreVideo()">
+                <span>▶</span>
+            </div>
             <!-- <button class="btn btn-primary">Download App</button> -->
         </div>
     </nav>
@@ -470,12 +473,17 @@
             Your browser does not support the video tag.
         </video>
         <div class="controls">
-            <button id="playPauseBtn" onclick="togglePlayPause()">❚❚</button>
-            <button id="muteBtn" onclick="toggleMute()">🔇</button>
-            <button onclick="minimizeVideo()">-</button>
-            <button onclick="closeVideo()">×</button>
+            <button id="playPauseBtn">❚❚</button>
+            <button id="muteBtn">🔊</button>
+            <button id="fullscreenBtn">⛶</button>
+            <button id="closeBtn">×</button>
         </div>
     </div>
+
+    <!-- Play Icon (shown when video is closed) -->
+    <div class="video-toggle-icon" id="videoToggleIcon">▶</div>
+    
+    
 
     
 <!-- Swiper JS -->
