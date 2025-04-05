@@ -36,57 +36,39 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
 
-    // ✅ Swiper initialization
     const swiper = new Swiper(".mySwiper", {
         loop: true,
+        slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 10,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-        },
         breakpoints: {
-            0: {
-                slidesPerView: 1,
-            },
-            480: {
-                slidesPerView: 2,
-            },
-            768: {
-                slidesPerView: 3,
-            },
-            992: {
-                slidesPerView: 4,
-            },
-            1200: {
-                slidesPerView: 5,
-            },
-            1400: {
-                slidesPerView: 6,
-            }
-        }
+            600: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            992: { slidesPerView: 4 },
+            1200: { slidesPerView: 5 },
+            1400: { slidesPerView: 6 },
+        },
     });
 
-    // ✅ Scroll to slide effect
-    let throttleTimeout;
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
 
-    window.addEventListener("scroll", function () {
-        const currentScrollY = window.scrollY;
-        const scrollDiff = currentScrollY - lastScrollY;
-
-        // Throttle scroll for performance
-        if (!throttleTimeout) {
-            throttleTimeout = setTimeout(() => {
-                if (Math.abs(scrollDiff) > 5) {
-                    if (scrollDiff > 0) {
+                if (Math.abs(currentScrollY - lastScrollY) > 5) {
+                    if (currentScrollY > lastScrollY) {
                         swiper.slideNext();
                     } else {
                         swiper.slidePrev();
                     }
                 }
+
                 lastScrollY = currentScrollY;
-                throttleTimeout = null;
-            }, 150); // Adjust this for speed/smoothness
+                ticking = false;
+            });
+
+            ticking = true;
         }
     });
 });
