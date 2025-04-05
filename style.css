@@ -287,7 +287,7 @@ section {
 .swiper-slide img {
     width: 100%;
     height: auto;
-    max-width: 248px;
+    max-width: 250px;
     border-radius: 15px;
     transition: transform 0.3s ease-in-out;
 }
@@ -477,7 +477,7 @@ section {
 
 @media (max-width: 768px) {
     .about {
-        padding: 412px 0 0 0 !important;
+        padding: 436px 0 0 0 !important;
         margin-bottom: 0px !important;
     }
 
@@ -781,6 +781,10 @@ section {
         margin-right: auto !important;
     }
 
+    .cashback-section{
+        padding: 50px 20px 0 20px;;
+    }
+
 
 }
 
@@ -866,6 +870,7 @@ section {
     .why-choose {
         text-align: center;
         /* Center align text */
+        padding: 30px 20px 15px 20px;
     }
 }
 
@@ -1108,7 +1113,7 @@ section {
 
     .custom-accordion {
         font-size: 15px;
-        padding: 15px 10px;
+        padding: 20px 25px 6px 25px;
     }
 
     .answer-btn {
@@ -1118,7 +1123,7 @@ section {
 
     .accordion-body {
         font-size: 14px;
-        padding: 15px 10px;
+        padding: 0px 25px 10px 25px
     }
 }
 
@@ -1205,8 +1210,12 @@ section {
         padding: 12px 20px;
         font-size: 14px;
     }
-}
 
+    .app-promo {
+        padding: 0px 20px 50px 20px;
+    
+}
+}
 
 
 
