@@ -35,51 +35,56 @@ document.addEventListener("DOMContentLoaded", function () {
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
-
+  
     // Initialize Swiper
     let swiper = new Swiper(".mySwiper", {
-        loop: true,
-        slidesPerView: 1,
-        centeredSlides: true,
-        spaceBetween: 10,
-        autoplay: {
-            delay: 5000,
-            disableOnInteraction: false
+      loop: true,
+      centeredSlides: true,
+      spaceBetween: 10,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
         },
-        breakpoints: {
-            600: {
-                slidesPerView: 2
-            },
-            768: {
-                slidesPerView: 3
-            },
-            992: {
-                slidesPerView: 4
-            },
-            1200: {
-                slidesPerView: 5
-            },
-            1400: {
-                slidesPerView: 6
-            }
-        }
+        480: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        992: {
+          slidesPerView: 4,
+        },
+        1200: {
+          slidesPerView: 5,
+        },
+        1400: {
+          slidesPerView: 6,
+        },
+      },
     });
-
-    // Scroll effect for sliding
+  
+    // Scroll-based slide effect (safe scroll check)
     window.addEventListener("scroll", function () {
-        let currentScrollY = window.scrollY;
-        let scrollDifference = currentScrollY - lastScrollY;
-
-        if (scrollDifference > 0) {
-            swiper.slideNext(); // Scroll down → move left
+      let currentScrollY = window.scrollY;
+      let scrollDiff = currentScrollY - lastScrollY;
+  
+      // Prevent glitch when at top or very fast scroll
+      if (Math.abs(scrollDiff) > 5 && currentScrollY > 50) {
+        if (scrollDiff > 0) {
+          swiper.slideNext();
         } else {
-            swiper.slidePrev(); // Scroll up → move right
+          swiper.slidePrev();
         }
-
-        lastScrollY = currentScrollY;
+      }
+  
+      lastScrollY = currentScrollY;
     });
-});
-
+  });
+  
 // why choose us counter code here
 
 
