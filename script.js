@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
     let lastScrollY = window.scrollY;
+    let scrollDisabled = false;
+    const scrollThreshold = 50; // Minimum scroll distance to trigger slide change
+    const scrollDelay = 300; // Cooldown period between slide changes
 
     const swiper = new Swiper(".mySwiper", {
         loop: true,
@@ -48,31 +51,47 @@ document.addEventListener("DOMContentLoaded", function () {
             1200: { slidesPerView: 5 },
             1400: { slidesPerView: 6 },
         },
+        touchEventsTarget: 'container', // Better mobile handling
+        resistanceRatio: 0.5 // Smoother edge resistance
     });
 
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const currentScrollY = window.scrollY;
+    // Improved scroll handling with debounce
+    function handleScroll() {
+        const currentScrollY = window.scrollY;
+        const scrollDelta = currentScrollY - lastScrollY;
 
-                if (Math.abs(currentScrollY - lastScrollY) > 5) {
-                    if (currentScrollY > lastScrollY) {
-                        swiper.slideNext();
-                    } else {
-                        swiper.slidePrev();
-                    }
-                }
-
-                lastScrollY = currentScrollY;
-                ticking = false;
-            });
-
-            ticking = true;
+        if (Math.abs(scrollDelta) > scrollThreshold && !scrollDisabled) {
+            scrollDisabled = true;
+            
+            if (scrollDelta > 0) {
+                swiper.slideNext();
+            } else {
+                swiper.slidePrev();
+            }
+            
+            // Re-enable after delay
+            setTimeout(() => {
+                scrollDisabled = false;
+            }, scrollDelay);
         }
+        
+        lastScrollY = currentScrollY;
+    }
+
+    // Using passive scroll for better performance
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Additional touch event handling for mobile
+    swiper.on('touchMove', () => {
+        scrollDisabled = true;
+    });
+
+    swiper.on('touchEnd', () => {
+        setTimeout(() => {
+            scrollDisabled = false;
+        }, scrollDelay);
     });
 });
-
 // why choose us counter code here
 
 
