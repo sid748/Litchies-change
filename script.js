@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize Swiper
     let swiper = new Swiper(".mySwiper", {
         loop: true,
-        slidesPerView: 2, 
+        slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 10,
         autoplay: {
@@ -47,13 +47,25 @@ document.addEventListener("DOMContentLoaded", function () {
             disableOnInteraction: false
         },
         breakpoints: {
+            600: {
+                slidesPerView: 2
+            },
             768: {
-                slidesPerView: 5,
+                slidesPerView: 3
+            },
+            992: {
+                slidesPerView: 4
+            },
+            1200: {
+                slidesPerView: 5
+            },
+            1400: {
+                slidesPerView: 6
             }
         }
     });
 
-    // Scroll Effect - Move slides left or right
+    // Scroll effect for sliding
     window.addEventListener("scroll", function () {
         let currentScrollY = window.scrollY;
         let scrollDifference = currentScrollY - lastScrollY;
@@ -67,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
         lastScrollY = currentScrollY;
     });
 });
-
 
 // why choose us counter code here
 
