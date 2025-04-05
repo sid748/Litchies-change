@@ -33,47 +33,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // mobile slider code here
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const swiper = new Swiper(".mySwiper", {
         loop: true,
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 10,
         autoplay: {
-            delay: 3000, // Auto-slide every 3 seconds
-            disableOnInteraction: false, // Continue autoplay after manual scroll
+            delay: 3000,
+            disableOnInteraction: false
         },
         breakpoints: {
             600: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
             992: { slidesPerView: 4 },
             1200: { slidesPerView: 5 },
-            1400: { slidesPerView: 6 },
+            1400: { slidesPerView: 6 }
         },
-        touchEventsTarget: 'container',
+        resistanceRatio: 0.7,
+        touchReleaseOnEdges: true
     });
 
-    // Scroll-to-Slide Logic (Up/Down → Left/Right)
+    // Improved scroll handling
+    let lastScrollTime = 0;
     let lastScrollY = window.scrollY;
-    let isScrolling = false;
+    const scrollCooldown = 300; // ms
+    const scrollThreshold = 30; // pixels
 
     window.addEventListener("scroll", () => {
-        if (!isScrolling) {
-            isScrolling = true;
-            const currentScrollY = window.scrollY;
-            const scrollDirection = currentScrollY > lastScrollY ? 'down' : 'up';
-
-            if (scrollDirection === 'down') {
+        const now = Date.now();
+        const currentScrollY = window.scrollY;
+        const scrollDistance = Math.abs(currentScrollY - lastScrollY);
+        
+        if (now - lastScrollTime > scrollCooldown && scrollDistance > scrollThreshold) {
+            if (currentScrollY > lastScrollY) {
                 swiper.slideNext();
             } else {
                 swiper.slidePrev();
             }
-
+            lastScrollTime = now;
             lastScrollY = currentScrollY;
-            setTimeout(() => { isScrolling = false; }, 500); // Cooldown
         }
     }, { passive: true });
 });
+
+
 // why choose us counter code here
 
 
