@@ -64,43 +64,65 @@ document.addEventListener("DOMContentLoaded", function () {
     const swiper = new Swiper(".mySwiper", {
         loop: true,
         slidesPerView: 1,
-        centeredSlides: true,
+        centeredSlides: false, // mobile ke liye false
         spaceBetween: 10,
         autoplay: {
             delay: 3000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
         },
         breakpoints: {
-            600: { slidesPerView: 2 },
-            768: { slidesPerView: 3 },
-            992: { slidesPerView: 4 },
-            1200: { slidesPerView: 5 },
-            1400: { slidesPerView: 6 }
+            0: {
+                slidesPerView: 1,
+                centeredSlides: false // 👈 ye important hai
+            },
+            600: {
+                slidesPerView: 2,
+                centeredSlides: false
+            },
+            768: {
+                slidesPerView: 3,
+                centeredSlides: true
+            },
+            992: {
+                slidesPerView: 4,
+                centeredSlides: true
+            },
+            1200: {
+                slidesPerView: 5,
+                centeredSlides: true
+            },
+            1400: {
+                slidesPerView: 6,
+                centeredSlides: true
+            }
         },
         resistanceRatio: 0.7,
-        touchReleaseOnEdges: false, // make sure it doesn't get stuck
+        touchReleaseOnEdges: false,
     });
 
-    let lastScrollTime = 0;
-    let lastScrollY = window.scrollY;
-    const scrollCooldown = 300; // ms
-    const scrollThreshold = 30; // px
+    // Only for desktop scroll-to-slide
+    if (window.innerWidth > 992) {
+        let lastScrollTime = 0;
+        let lastScrollY = window.scrollY;
+        const scrollCooldown = 300;
+        const scrollThreshold = 30;
 
-    window.addEventListener("scroll", () => {
-        const now = Date.now();
-        const currentScrollY = window.scrollY;
-        const scrollDistance = Math.abs(currentScrollY - lastScrollY);
+        window.addEventListener("scroll", () => {
+            const now = Date.now();
+            const currentScrollY = window.scrollY;
+            const scrollDistance = Math.abs(currentScrollY - lastScrollY);
 
-        if (now - lastScrollTime > scrollCooldown && scrollDistance > scrollThreshold) {
-            if (currentScrollY > lastScrollY) {
-                if (!swiper.isEnd) swiper.slideNext();
-            } else {
-                if (!swiper.isBeginning) swiper.slidePrev();
+            if (now - lastScrollTime > scrollCooldown && scrollDistance > scrollThreshold) {
+                if (currentScrollY > lastScrollY) {
+                    swiper.slideNext(500);
+                } else {
+                    swiper.slidePrev(500);
+                }
+                lastScrollTime = now;
+                lastScrollY = currentScrollY;
             }
-            lastScrollTime = now;
-            lastScrollY = currentScrollY;
-        }
-    }, { passive: true });
+        }, { passive: true });
+    }
 });
 
 // why choose us counter code here

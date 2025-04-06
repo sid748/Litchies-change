@@ -293,10 +293,18 @@ section {
     position: relative;
 }
 
+.mySwiper {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  
+  
 .swiper-slide {
     display: flex !important;
-    justify-content: center;
-    align-items: center;
+    justify-content: center !important;
+    align-items: center !important;
     width: auto !important;
     padding: 10px;
 }
@@ -307,6 +315,8 @@ section {
     max-width: 250px;
     border-radius: 15px;
     transition: transform 0.3s ease-in-out;
+    display: block;
+    object-fit: contain;
 }
 
 .swiper-slide-active img {
@@ -317,11 +327,11 @@ section {
 /* Media queries */
 @media (max-width: 600px) {
     .swiper-slide img {
-        width: 88% !important;
+        width: 90% !important;
     }
 
     .mobile-carousel {
-        top: 60% !important;
+        top: 54% !important;
     }
 }
 
@@ -958,7 +968,7 @@ section {
 
 .testimonial-section {
     text-align: center;
-    padding: 120px 20px 140px 20px;
+    padding: 100px 20px 140px 20px;
 }
 
 .section-title {
