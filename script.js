@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // mobile slider code here
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const swiper = new Swiper(".mySwiper", {
         loop: true,
         slidesPerView: 1,
@@ -78,32 +78,30 @@ document.addEventListener("DOMContentLoaded", function() {
             1400: { slidesPerView: 6 }
         },
         resistanceRatio: 0.7,
-        touchReleaseOnEdges: true
+        touchReleaseOnEdges: false, // make sure it doesn't get stuck
     });
 
-    // Improved scroll handling
     let lastScrollTime = 0;
     let lastScrollY = window.scrollY;
     const scrollCooldown = 300; // ms
-    const scrollThreshold = 30; // pixels
+    const scrollThreshold = 30; // px
 
     window.addEventListener("scroll", () => {
         const now = Date.now();
         const currentScrollY = window.scrollY;
         const scrollDistance = Math.abs(currentScrollY - lastScrollY);
-        
+
         if (now - lastScrollTime > scrollCooldown && scrollDistance > scrollThreshold) {
             if (currentScrollY > lastScrollY) {
-                swiper.slideNext();
+                if (!swiper.isEnd) swiper.slideNext();
             } else {
-                swiper.slidePrev();
+                if (!swiper.isBeginning) swiper.slidePrev();
             }
             lastScrollTime = now;
             lastScrollY = currentScrollY;
         }
     }, { passive: true });
 });
-
 
 // why choose us counter code here
 
