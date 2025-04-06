@@ -61,69 +61,63 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
-    const swiper = new Swiper(".mySwiper", {
-        loop: true,
-        slidesPerView: 1,
-        centeredSlides: false, // mobile ke liye false
-        spaceBetween: 10,
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 1,
-                centeredSlides: false // 👈 ye important hai
-            },
-            600: {
-                slidesPerView: 2,
-                centeredSlides: false
-            },
-            768: {
-                slidesPerView: 3,
-                centeredSlides: true
-            },
-            992: {
-                slidesPerView: 4,
-                centeredSlides: true
-            },
-            1200: {
-                slidesPerView: 5,
-                centeredSlides: true
-            },
-            1400: {
-                slidesPerView: 6,
-                centeredSlides: true
-            }
-        },
-        resistanceRatio: 0.7,
-        touchReleaseOnEdges: false,
-    });
+    let swiper;
 
-    // Only for desktop scroll-to-slide
-    if (window.innerWidth > 992) {
-        let lastScrollTime = 0;
-        let lastScrollY = window.scrollY;
-        const scrollCooldown = 300;
-        const scrollThreshold = 30;
+    function initSwiper() {
+        if (swiper) swiper.destroy(true, true); // Destroy existing instance if it exists
 
-        window.addEventListener("scroll", () => {
-            const now = Date.now();
-            const currentScrollY = window.scrollY;
-            const scrollDistance = Math.abs(currentScrollY - lastScrollY);
-
-            if (now - lastScrollTime > scrollCooldown && scrollDistance > scrollThreshold) {
-                if (currentScrollY > lastScrollY) {
-                    swiper.slideNext(500);
-                } else {
-                    swiper.slidePrev(500);
+        swiper = new Swiper(".mySwiper", {
+            loop: true,
+            loopAdditionalSlides: 3, // Increased to avoid disappearing slides
+            slidesPerView: 1,
+            centeredSlides: false, // Disable centered slides for mobile
+            spaceBetween: 10,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                600: { 
+                    slidesPerView: 2, 
+                    centeredSlides: false 
+                },
+                768: { 
+                    slidesPerView: 3, 
+                    centeredSlides: true 
+                },
+                992: { 
+                    slidesPerView: 4, 
+                    centeredSlides: true 
+                },
+                1200: { 
+                    slidesPerView: 5, 
+                    centeredSlides: true 
+                },
+                1400: { 
+                    slidesPerView: 6, 
+                    centeredSlides: true 
                 }
-                lastScrollTime = now;
-                lastScrollY = currentScrollY;
-            }
-        }, { passive: true });
+            },
+            resistanceRatio: 0.7,
+            touchReleaseOnEdges: false,
+        });
     }
+
+    // Initialize Swiper on page load
+    initSwiper();
+
+    // Reinitialize Swiper on window resize
+    window.addEventListener("resize", initSwiper);
+
+    // Debugging events (optional, for troubleshooting)
+    swiper.on("slideChange", () => {
+        console.log("Slide changed to:", swiper.activeIndex);
+    });
+    swiper.on("loopFix", () => {
+        console.log("Loop fixed");
+    });
 });
+
 
 // why choose us counter code here
 

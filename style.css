@@ -307,6 +307,8 @@ section {
     align-items: center !important;
     width: auto !important;
     padding: 10px;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 .swiper-slide img {
@@ -317,6 +319,7 @@ section {
     transition: transform 0.3s ease-in-out;
     display: block;
     object-fit: contain;
+    
 }
 
 .swiper-slide-active img {
