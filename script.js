@@ -64,64 +64,53 @@ document.addEventListener("DOMContentLoaded", function () {
     let swiper;
 
     function initSwiper() {
-        if (swiper) swiper.destroy(true, true); // Destroy existing instance if it exists
+      if (swiper) swiper.destroy(true, true);
 
-        swiper = new Swiper(".mySwiper", {
-            loop: true,
-            loopAdditionalSlides: 3, // Increased to avoid disappearing slides
-            slidesPerView: 1,
-            centeredSlides: false, // Disable centered slides for mobile
-            spaceBetween: 10,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                0: { 
-                    slidesPerView: 1, 
-                    centeredSlides: false 
-                },
-                600: { 
-                    slidesPerView: 1, 
-                    centeredSlides: false 
-                },
-                768: { 
-                    slidesPerView: 3, 
-                    centeredSlides: true 
-                },
-                992: { 
-                    slidesPerView: 4, 
-                    centeredSlides: true 
-                },
-                1200: { 
-                    slidesPerView: 5, 
-                    centeredSlides: true 
-                },
-                1400: { 
-                    slidesPerView: 5, 
-                    centeredSlides: true 
-                }
-            },
-            resistanceRatio: 0.7,
-            touchReleaseOnEdges: false,
-        });
+      swiper = new Swiper(".mySwiper", {
+        loop: true,
+        loopAdditionalSlides: 3,
+        slidesPerView: 1,
+        centeredSlides: false,
+        spaceBetween: 10,
+        autoplay: {
+          delay: 2500,
+          disableOnInteraction: false,
+        },
+        pagination: false, // Disable pagination
+        breakpoints: {
+          0: {
+            slidesPerView: 1.2,
+            centeredSlides: true,
+          },
+          600: {
+            slidesPerView: 1.5,
+            centeredSlides: true,
+          },
+          768: {
+            slidesPerView: 2.5,
+            centeredSlides: true,
+          },
+          992: {
+            slidesPerView: 3.5,
+            centeredSlides: true,
+          },
+          1200: {
+            slidesPerView: 5,
+            centeredSlides: true,
+          },
+        },
+        resistanceRatio: 0.7,
+        touchReleaseOnEdges: false,
+      });
+
+      swiper.on("slideChange", () => {
+        console.log("Slide changed to:", swiper.activeIndex);
+      });
     }
 
-    // Initialize Swiper on page load
     initSwiper();
-
-    // Reinitialize Swiper on window resize
     window.addEventListener("resize", initSwiper);
-
-    // Debugging events (optional, for troubleshooting)
-    swiper.on("slideChange", () => {
-        console.log("Slide changed to:", swiper.activeIndex);
-    });
-    swiper.on("loopFix", () => {
-        console.log("Loop fixed");
-    });
-});
-
+  });
 
 // why choose us counter code here
 
