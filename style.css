@@ -1145,6 +1145,10 @@ section {
         padding: 0px 20px 90px 20px;
     }
 
+    .testimonial-section .section-title{
+        font-size: 32px;
+    }
+
     .testimonial-container {
         height: 180px;
         overflow: hidden;
@@ -1281,6 +1285,9 @@ section {
     .accordion-body {
         font-size: 14px;
         margin-top: -1px;
+    }
+    .faq-section .main-section {
+        font-size: 23.2px;
     }
 }
 
