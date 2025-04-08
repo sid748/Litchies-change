@@ -329,7 +329,7 @@ section {
 
   @media (max-width: 600px) {
     .swiper-slide {
-      width: 220px !important;
+      width: 240px !important;
       margin-right: 10px !important;
     }
 
