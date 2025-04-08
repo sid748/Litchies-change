@@ -73,12 +73,16 @@ document.addEventListener("DOMContentLoaded", function () {
             centeredSlides: false, // Disable centered slides for mobile
             spaceBetween: 10,
             autoplay: {
-                delay: 3000,
+                delay: 2500,
                 disableOnInteraction: false,
             },
             breakpoints: {
+                0: { 
+                    slidesPerView: 1, 
+                    centeredSlides: false 
+                },
                 600: { 
-                    slidesPerView: 2, 
+                    slidesPerView: 1, 
                     centeredSlides: false 
                 },
                 768: { 
@@ -94,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     centeredSlides: true 
                 },
                 1400: { 
-                    slidesPerView: 6, 
+                    slidesPerView: 5, 
                     centeredSlides: true 
                 }
             },
@@ -196,104 +200,103 @@ function currentSlide(index) {
 setInterval(nextSlide, 5000);
 
 // floating video code here
-const video = document.getElementById("floatingVideo");
-        const videoContainer = document.getElementById("videoContainer");
-        const videoToggleIcon = document.getElementById("videoToggleIcon");
-        const playPauseBtn = document.getElementById("playPauseBtn");
-        const muteBtn = document.getElementById("muteBtn");
-        const fullscreenBtn = document.getElementById("fullscreenBtn");
-        const closeBtn = document.getElementById("closeBtn");
+document.addEventListener("DOMContentLoaded", function () {
+    const video = document.getElementById("floatingVideo");
+    const videoContainer = document.getElementById("videoContainer");
+    const videoToggleIcon = document.getElementById("videoToggleIcon");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const muteBtn = document.getElementById("muteBtn");
+    const fullscreenBtn = document.getElementById("fullscreenBtn");
+    const closeBtn = document.getElementById("closeBtn");
 
-        // Toggle play/pause
-        playPauseBtn.addEventListener('click', function() {
-            if (video.paused) {
-                video.play();
-                playPauseBtn.textContent = "❚❚";
-            } else {
-                video.pause();
-                playPauseBtn.textContent = "▶";
-            }
-        });
+    // Ensure video is muted on load
+    video.muted = true;
+    video.play().catch((err) => {
+        console.warn("Autoplay blocked:", err);
+    });
 
-        // Toggle mute
-        muteBtn.addEventListener('click', function() {
-            video.muted = !video.muted;
-            muteBtn.textContent = video.muted ? "🔇" : "🔊";
-        });
+    // 🔧 FIX: Set correct mute icon on page load
+    muteBtn.textContent = video.muted ? "🔇" : "🔊";
 
-        // Toggle fullscreen
-        fullscreenBtn.addEventListener('click', function() {
-            if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
-                    console.error("Fullscreen error:", err);
-                });
-            } else {
-                document.exitFullscreen();
-            }
-        });
-
-        // Close video
-        closeBtn.addEventListener('click', function() {
-            video.pause();
-            videoContainer.style.display = "none";
-            videoToggleIcon.style.display = "flex";
-        });
-
-        // Restore video
-        videoToggleIcon.addEventListener('click', function() {
-            videoContainer.style.display = "flex";
-            videoToggleIcon.style.display = "none";
+    // Toggle play/pause
+    playPauseBtn.addEventListener("click", () => {
+        if (video.paused) {
             video.play();
-        });
+            playPauseBtn.textContent = "❚❚";
+        } else {
+            video.pause();
+            playPauseBtn.textContent = "▶";
+        }
+    });
 
-        // Handle fullscreen changes
-        document.addEventListener('fullscreenchange', function() {
-            if (!document.fullscreenElement) {
-                videoContainer.classList.remove("fullscreen");
-            } else {
-                videoContainer.classList.add("fullscreen");
-            }
-        });
+    // Toggle mute/unmute
+    muteBtn.addEventListener("click", () => {
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? "🔇" : "🔊";
+    });
 
-        // Handle orientation changes
-        window.addEventListener('orientationchange', function() {
-            if (document.fullscreenElement) {
-                setTimeout(() => {
-                    videoContainer.style.width = "100%";
-                    videoContainer.style.height = "100%";
-                }, 300);
-            }
-        });
+    // Fullscreen handling
+    fullscreenBtn.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+            videoContainer.requestFullscreen().catch((err) => {
+                console.error("Fullscreen error:", err);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    });
 
+    document.addEventListener("fullscreenchange", () => {
+        videoContainer.classList.toggle("fullscreen", !!document.fullscreenElement);
+    });
 
+    window.addEventListener("orientationchange", () => {
+        if (document.fullscreenElement) {
+            setTimeout(() => {
+                videoContainer.style.width = "100%";
+                videoContainer.style.height = "100%";
+            }, 300);
+        }
+    });
 
-        
+    closeBtn.addEventListener("click", () => {
+        video.pause();
+        videoContainer.style.display = "none";
+        videoToggleIcon.style.display = "flex";
+    });
+
+    videoToggleIcon.addEventListener("click", () => {
+        videoContainer.style.display = "flex";
+        videoToggleIcon.style.display = "none";
+        video.play();
+    });
+});
+
 
 // faq section starts here
 document.addEventListener("DOMContentLoaded", function () {
     const accordionButtons = document.querySelectorAll(".accordion-button");
 
     accordionButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            const icon = this.querySelector(".answer-btn");
+        const targetId = button.getAttribute("data-bs-target");
+        const icon = button.querySelector(".answer-btn");
+        const target = document.querySelector(targetId);
 
-            // Check if the clicked button is collapsed or expanded
-            setTimeout(() => {
-                if (this.classList.contains("collapsed")) {
-                    icon.textContent = "+";
-                } else {
-                    icon.textContent = "−";
-                }
-            }, 200); // Adding a slight delay to ensure correct toggle
-        });
-    });
-
-    // Set initial state when page loads
-    document.querySelectorAll(".accordion-collapse.show").forEach((item) => {
-        const btn = item.previousElementSibling.querySelector(".answer-btn");
-        if (btn) {
-            btn.textContent = "−";
+        // Initial icon state
+        if (target.classList.contains("show")) {
+            icon.textContent = "−";
+        } else {
+            icon.textContent = "+";
         }
+
+        // Listen to the show/hide events
+        target.addEventListener("show.bs.collapse", () => {
+            icon.textContent = "−";
+        });
+
+        target.addEventListener("hide.bs.collapse", () => {
+            icon.textContent = "+";
+        });
     });
 });
 

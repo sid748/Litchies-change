@@ -89,10 +89,10 @@
                 <div class="swiper-slide"><img src="./images/phone-7.png" alt="Mobile App"></div>
                 <div class="swiper-slide"><img src="./images/phone-8.png" alt="Mobile App"></div>
                 <div class="swiper-slide"><img src="./images/phone-9.png" alt="Mobile App"></div>
-                
+
 
             </div>
-            
+
         </div>
     </section>
 
@@ -330,7 +330,7 @@
                         Asked Questions</h2>
                     <div class="accordion mt-4" id="faqAccordion" data-aos="fade-up" data-aos-duration="2000">
 
-                        <div class="container p-4">
+                        <div class="container">
 
                             <div class="accordion-item">
                                 <h2 class="accordion-header">
@@ -464,7 +464,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="2000">
-                            <img src="images/Litchess2.png" alt="Litchies App" class="img-fluid mobile-img w-50">
+                            <img src="images/Litchess2.png" alt="Litchies App" class="img-fluid mobile-img">
                         </div>
                     </div>
                 </div>
@@ -477,56 +477,52 @@
     <!-- footer section starts here -->
     <footer class="footer">
         <div class="container pt-5">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-start mb-5 pb-4">
-                    <div class="footer-logo">
+            <div class="row gy-4">
+                <!-- Column 1 -->
+                <div class="col-lg-4 col-md-6 text-start">
+                    <div class="footer-logo mb-3">
                         <img src="images/applogobar (1).png" alt="Litchies">
                         <h5 class="mb-0">Litchies</h5>
                     </div>
-                    <p class="mt-2">litchies2024@gmail.com</p>
-                    <p>7457804316</p>
-                </div>
-                <div class="col-md-4 text-start">
-                    <h5 class="pb-3">Company</h5>
-                    <ul class="list-unstyled">
-                        <li class="pb-3"><a href="index.html">Home</a></li>
-                        <li class="pb-3"><a href="#about-us">About</a></li>
-                        <li class="pb-3"><a href="#why-choose-us">Services</a></li>
-                        <li class="pb-3"><a href="#app-promo">Contact</a></li>
-                    </ul>
+                    <p class="mb-1">litchies2024@gmail.com</p>
+                    <p>+917457804316</p>
                 </div>
 
-                <!-- <div class="col-md-3 text-start">
-                    <h5 class="pb-3">Contact</h5>
-                    <ul class="list-unstyled">
-                        <li class="pb-3"><a href="#">Help</a></li>
-                        <li class="pb-3"><a href="#">FAQs</a></li>
-                        <li class="pb-3"><a href="#">Press</a></li>
-                        <li class="pb-3"><a href="#">Terms & Conditions</a></li>
-                    </ul>
-                </div> -->
+                <!-- Column 2 -->
                 <div class="col-md-4 text-start">
+                    <h5 class="pb-3">Company</h5>
+                    <ul class="footer-links list-unstyled d-flex flex-wrap d-md-block">
+                        <li class="w-50 pb-2"><a href="index.html">Home</a></li>
+                        <li class="w-50 pb-2"><a href="#about-us">About</a></li>
+                        <li class="w-50 pb-2"><a href="#why-choose-us">Services</a></li>
+                        <li class="w-50 pb-2"><a href="#app-promo">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div class="col-lg-4 col-md-12 text-start">
                     <div class="social-icons pb-3">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <p class="">Let’s try out!</p>
-                    <div class="store-buttons">
-                        <a href="https://apps.apple.com/in/app/litchies/id6511238052" class="mb-3" target="_blank"><img
-                                src="images/Appstore.png" alt="">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN"
-                            target="_blank"><img src="images/Playstore.png" alt="">Play Store</a>
+                    <p class="mb-3">Let’s try out!</p>
+                    <div class="store-buttons d-flex flex-column  gap-3">
+                        <a href="https://apps.apple.com/in/app/litchies/id6511238052" target="_blank">
+                            <img src="images/Appstore.png" alt=""> App Store
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN" target="_blank">
+                            <img src="images/Playstore.png" alt=""> Play Store
+                        </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </footer>
 
     <!-- watch video section starts here -->
     <div class="floating-video" id="videoContainer">
-        <video id="floatingVideo" autoplay muted loop>
+        <video id="floatingVideo" autoplay muted playsinline>
             <source src="Litchies Video.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
