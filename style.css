@@ -289,7 +289,7 @@ section {
     justify-content: center;
     align-items: center;
     height: 700px;
-    overflow: hidden;
+    overflow: hidden !important;
     position: relative;
 }
 
@@ -305,7 +305,7 @@ section {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    width: 344px !important;
+    width: 311px !important;
     padding: 10px;
     visibility: visible !important;
     opacity: 1 !important;
@@ -316,7 +316,7 @@ section {
     height: auto;
     max-width: 250px;
     border-radius: 15px;
-    display: block;
+    display: block !important;
     object-fit: contain;
     transform: scale(1.2);
   transition: transform 0.4s ease-in-out;
@@ -325,8 +325,8 @@ section {
 }
 
 .swiper-slide-active img {
-    transform: scale(1.4) translateY(8px);
-    margin-top: 10px;
+    transform: scale(1.3) translateY(8px);
+    margin-top: 8px;
 }
 
 /* Media queries */
@@ -1293,7 +1293,7 @@ section {
 }
 
 .mobile-img {
-    width: 60%;
+    width: 50%;
     max-width: 400px;
     height: auto;
 }
