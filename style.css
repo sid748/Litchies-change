@@ -659,7 +659,7 @@ section {
 
 @media (max-width: 768px) {
     .about {
-        padding: 376px 0 0 0 !important;
+        padding: 476px 0 0 0 !important;
         margin-bottom: 0px !important;
     }
 
@@ -1388,20 +1388,20 @@ section {
 /* lets connect section starts here */
 .app-promo {
     padding: 50px 20px;
-    color: #121212;
+    color: #ffffff;
 }
 
 .content h2 {
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 15px;
-    color: #121212;
+    color: #ffffff;
 }
 
 .content p {
     font-size: 18px;
     font-weight: 400;
-    color: #121212;
+    color: #ffffff;
 }
 
 .mobile-img {
@@ -1419,7 +1419,7 @@ section {
 }
 
 .download-button-group .download-btn {
-    border: 2px solid #ffffff;
+    border: 1px solid #ffffff;
     background-color: transparent;
     padding: 15px 30px !important;
     border-radius: 10px;
@@ -1429,6 +1429,7 @@ section {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #ffffff;
 }
 
 .download-button-group .download-btn:hover {
