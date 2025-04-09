@@ -62,55 +62,55 @@ document.addEventListener("DOMContentLoaded", function() {
 // mobile slider code here
 document.addEventListener("DOMContentLoaded", function () {
     let swiper;
-
+  
     function initSwiper() {
       if (swiper) swiper.destroy(true, true);
-
+  
       swiper = new Swiper(".mySwiper", {
         loop: true,
         loopAdditionalSlides: 3,
-        slidesPerView: 1,
-        centeredSlides: false,
+        slidesPerView: 1.4, // default for mobile
         spaceBetween: 10,
+        centeredSlides: true,
         autoplay: {
           delay: 2500,
           disableOnInteraction: false,
         },
-        pagination: false, // Disable pagination
+        pagination: false,
         breakpoints: {
-          0: {
-            slidesPerView: 1.2,
-            centeredSlides: true,
-          },
-          600: {
-            slidesPerView: 1.5,
-            centeredSlides: true,
+          480: {
+            slidesPerView: 1.6,
+            spaceBetween: 15,
           },
           768: {
             slidesPerView: 2.5,
-            centeredSlides: true,
+            spaceBetween: 20,
           },
           992: {
             slidesPerView: 3.5,
             centeredSlides: true,
+            spaceBetween: 20,
           },
           1200: {
             slidesPerView: 5,
-            centeredSlides: true,
+            centeredSlides: false,
+            spaceBetween: 20,
           },
         },
         resistanceRatio: 0.7,
         touchReleaseOnEdges: false,
       });
-
+  
       swiper.on("slideChange", () => {
         console.log("Slide changed to:", swiper.activeIndex);
       });
     }
-
+  
     initSwiper();
     window.addEventListener("resize", initSwiper);
   });
+  
+  
 
 // why choose us counter code here
 
