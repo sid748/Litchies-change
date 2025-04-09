@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.warn("Autoplay blocked:", err);
     });
 
-    // 🔧 FIX: Set correct mute icon on page load
+    // Set correct mute icon
     muteBtn.textContent = video.muted ? "🔇" : "🔊";
 
     // Toggle play/pause
@@ -224,43 +224,63 @@ document.addEventListener("DOMContentLoaded", function () {
         muteBtn.textContent = video.muted ? "🔇" : "🔊";
     });
 
-    // Fullscreen handling
+    // Fullscreen handling (with cross-browser support)
     fullscreenBtn.addEventListener("click", () => {
         if (!document.fullscreenElement) {
-            videoContainer.requestFullscreen().catch((err) => {
-                console.error("Fullscreen error:", err);
-            });
+            if (videoContainer.requestFullscreen) {
+                videoContainer.requestFullscreen();
+            } else if (videoContainer.webkitRequestFullscreen) {
+                videoContainer.webkitRequestFullscreen();
+            } else if (videoContainer.msRequestFullscreen) {
+                videoContainer.msRequestFullscreen();
+            }
         } else {
-            document.exitFullscreen();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
         }
     });
 
+    // Toggle fullscreen class and reset on exit
     document.addEventListener("fullscreenchange", () => {
-        videoContainer.classList.toggle("fullscreen", !!document.fullscreenElement);
+        const isFullscreen = !!document.fullscreenElement;
+        videoContainer.classList.toggle("fullscreen", isFullscreen);
+
+        // Clear any inline styles on exit
+        if (!isFullscreen) {
+            videoContainer.style.width = "";
+            videoContainer.style.height = "";
+        }
     });
 
+    // Optional: Handle orientation changes while fullscreen
     window.addEventListener("orientationchange", () => {
         if (document.fullscreenElement) {
             setTimeout(() => {
-                videoContainer.style.width = "100%";
-                videoContainer.style.height = "100%";
+                videoContainer.style.width = "100vw";
+                videoContainer.style.height = "100vh";
             }, 300);
         }
     });
 
+    // Close floating video
     closeBtn.addEventListener("click", () => {
         video.pause();
         videoContainer.style.display = "none";
         videoToggleIcon.style.display = "flex";
     });
 
+    // Reopen video
     videoToggleIcon.addEventListener("click", () => {
         videoContainer.style.display = "flex";
         videoToggleIcon.style.display = "none";
         video.play();
     });
 });
-
 
 // faq section starts here
 document.addEventListener("DOMContentLoaded", function () {

@@ -491,15 +491,20 @@ section {
 }
 
 .fullscreen {
-    width: 100% !important;
-    height: 100% !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    top: 0 !important;
+    left: 0 !important;
     bottom: 0 !important;
     right: 0 !important;
     border-radius: 0 !important;
+    z-index: 10000;
 }
 
 .fullscreen video {
-    height: calc(100% - 50px) !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
 }
 
 /* Play Toggle Icon */
@@ -537,95 +542,89 @@ section {
         bottom: 15px;
         right: 15px;
     }
-    
+
     .controls button {
         width: 28px;
         height: 28px;
         font-size: 12px;
     }
-    
+
     .minimized {
         width: 100px !important;
         height: 70px !important;
     }
-    
+
     .video-toggle-icon {
         width: 36px;
         height: 36px;
         bottom: 15px;
         right: 15px;
     }
+
     .video-toggle-icon i {
         font-size: 13px; 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 }
 
 @media (max-width: 480px) {
     .floating-video {
-        width: 180px;
-        height: 110px;
-        bottom: 10px;
-        right: 10px;
+      width: 160px;
+      height: 100px;
+      bottom: 62px;
+      right: 5px;
     }
-    
+  
     .controls {
-        padding: 6px;
-        gap: 6px;
+      padding: 6px;
+      gap: 6px;
     }
-    
+  
     .controls button {
-        width: 24px;
-        height: 24px;
-        font-size: 11px;
+      width: 22px;
+      height: 22px;
+      font-size: 11px;
     }
-    
+  
     .minimized {
-        width: 80px !important;
-        height: 60px !important;
+      width: 80px !important;
+      height: 60px !important;
     }
-    
+  
     .video-toggle-icon {
-        width: 32px;
-        height: 32px;
-        bottom: 10px;
-        right: 10px;
-        font-size: 14px;
+      width: 32px;
+      height: 32px;
+      bottom: 10px;
+      right: 10px;
+      font-size: 14px;
     }
+  
     .video-toggle-icon i {
-        font-size: 12px; 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      font-size: 12px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-}
-
-@media (max-width: 360px) {
-    .floating-video {
-        width: 160px;
-        height: 100px;
+  
+    .floating-video.fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      top: 0 !important;
+      left: 0 !important;
+      bottom: 0 !important;
+      right: 0 !important;
+      border-radius: 0 !important;
+      z-index: 10000;
     }
-    
-    .controls button {
-        width: 22px;
-        height: 22px;
+  
+    .floating-video.fullscreen video {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
     }
-    .video-toggle-icon i {
-        font-size: 12px; 
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
-
+  }
+  
 /* About section starts here */
 
 .about {
