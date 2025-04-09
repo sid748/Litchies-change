@@ -259,7 +259,7 @@
         </p>
 
         <div class="testimonial-slider" data-aos="fade-up" data-aos-duration="2000">
-            <button class="arrow left" onclick="prevSlide()">&#8592;</button>
+            <button class="arrow left" onclick="prevSlide()"><i class="fa-solid fa-arrow-left"></i></button>
             <div class="testimonial-container">
                 <div class="testimonial active">
                     <p class="testimonial-text">"Litchies makes shopping in Agra easy! I can explore shops, check
@@ -303,7 +303,7 @@
                 </div>
             </div>
 
-            <button class="arrow right" onclick="nextSlide()">&#8594;</button>
+            <button class="arrow right" onclick="nextSlide()"><i class="fa-solid fa-arrow-right"></i></button>
 
             <div class="dots">
                 <span class="dot active" onclick="currentSlide(0)"></span>
@@ -437,12 +437,12 @@
         <!-- let try our app section -->
         <section id="app-promo">
             <div class="container-fluid app-promo pb-5 overflow-hidden">
-                <div class="container text-center text-md-start pb-5">
+                <div class="container text-center text-md-start pb-5" style="padding-left: 2rem;">
                     <div class="row align-items-center">
                         <div class="col-md-6 content" data-aos="fade-right" data-aos-duration="2000">
                             <h2>Let's try out Litchies <br>for free</h2>
                             <p>Download our latest version and please don't<br> forget to rate :)</p>
-                            <div class="download-button-group pt-3 pb-4 d-flex flex-column flex-sm-row">
+                            <div class="download-button-group pt-3 pb-4 d-flex flex-row">
                                 <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN"
                                     class="text-decoration-none mb-2 mb-sm-0 me-sm-2" target="_blank">
                                     <button class="btn download-btn"><img src="images/Playstore.png" alt="">Play
@@ -460,7 +460,7 @@
                                 <h4>Need Help? Contact Us</h4>
                                 <p class="">If you have any queries or need assistance while using the Litchies app,
                                     reach out to us:<br>
-                                    Call/WhatsApp: <strong>7457804316</strong></p>
+                                    Call/WhatsApp: <strong>+917457804316</strong></p>
                             </div>
                         </div>
                         <div class="col-md-6 text-center" data-aos="fade-left" data-aos-duration="2000">
@@ -477,48 +477,72 @@
     <!-- footer section starts here -->
     <footer class="footer">
         <div class="container pt-5">
-            <div class="row gy-4">
-                <!-- Column 1 -->
-                <div class="col-lg-4 col-md-6 text-start">
-                    <div class="footer-logo mb-3">
-                        <img src="images/applogobar (1).png" alt="Litchies">
-                        <h5 class="mb-0">Litchies</h5>
-                    </div>
-                    <p class="mb-1">litchies2024@gmail.com</p>
-                    <p>+917457804316</p>
-                </div>
-
-                <!-- Column 2 -->
-                <div class="col-md-4 text-start">
-                    <h5 class="pb-3">Company</h5>
-                    <ul class="footer-links list-unstyled d-flex flex-wrap d-md-block">
-                        <li class="w-50 pb-2"><a href="index.html">Home</a></li>
-                        <li class="w-50 pb-2"><a href="#about-us">About</a></li>
-                        <li class="w-50 pb-2"><a href="#why-choose-us">Services</a></li>
-                        <li class="w-50 pb-2"><a href="#app-promo">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Column 3 -->
-                <div class="col-lg-4 col-md-12 text-start">
-                    <div class="social-icons pb-3">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                    <p class="mb-3">Let’s try out!</p>
-                    <div class="store-buttons d-flex flex-column  gap-3">
-                        <a href="https://apps.apple.com/in/app/litchies/id6511238052" target="_blank">
-                            <img src="images/Appstore.png" alt=""> App Store
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN" target="_blank">
-                            <img src="images/Playstore.png" alt=""> Play Store
-                        </a>
-                    </div>
-                </div>
+          <div class="row gy-4">
+            <!-- Column 1 -->
+            <div class="col-lg-4 col-md-6 text-start">
+              <div class="footer-logo mb-3">
+                <img src="images/applogobar (1).png" alt="Litchies">
+                <h5 class="mb-0">Litchies</h5>
+              </div>
+              <p class="mb-1">litchies2024@gmail.com</p>
+              <p>+917457804316</p>
             </div>
+      
+            <!-- Column 2 -->
+            <div class="col-md-4 text-start">
+              <h5 class="pb-1">Company</h5>
+              <ul class="footer-links list-unstyled d-flex flex-wrap d-md-block">
+                <li class="w-50 pb-1"><a href="index.html">Home</a></li>
+                <li class="w-50 pb-1"><a href="#about-us">About</a></li>
+                <li class="w-50 pb-1"><a href="#why-choose-us">Services</a></li>
+                <li class="w-50 pb-1"><a href="#app-promo">Contact</a></li>
+              </ul>
+            </div>
+      
+            <!-- Column 3 -->
+            <div class="col-lg-4 col-md-12 text-start">
+              <!-- Desktop View -->
+              <div class="d-none d-md-flex flex-column align-items-start">
+                <div class="social-icons d-flex gap-2 mb-2">
+                  <a href="#"><i class="fab fa-facebook"></i></a>
+                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                  <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="mb-3">Let’s try out!</p>
+                <div class="store-buttons d-flex flex-column gap-3">
+                  <a href="https://apps.apple.com/in/app/litchies/id6511238052" target="_blank" class="d-flex align-items-center gap-2">
+                    <img src="images/Appstore.png" alt=""> App Store
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN" target="_blank" class="d-flex align-items-center gap-2">
+                    <img src="images/Playstore.png" alt=""> Play Store
+                  </a>
+                </div>
+              </div>
+      
+              <!-- Mobile View -->
+              <div class="d-flex d-md-none flex-column align-items-start">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </div>
+                  <p class="mb-0">Let’s try out!</p>
+                </div>
+                <div class="store-buttons d-flex flex-row gap-3 w-100">
+                  <a href="https://apps.apple.com/in/app/litchies/id6511238052" target="_blank" class="d-flex align-items-center gap-2 flex-fill justify-content-center">
+                    <img src="images/Appstore.png" alt=""> App Store
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.litchies&hl=en_IN" target="_blank" class="d-flex align-items-center gap-2 flex-fill justify-content-center">
+                    <img src="images/Playstore.png" alt=""> Play Store
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-    </footer>
+      </footer>
+      
 
     <!-- watch video section starts here -->
     <div class="floating-video" id="videoContainer">
@@ -535,7 +559,7 @@
     </div>
 
     <!-- Play Icon (shown when video is closed) -->
-    <div class="video-toggle-icon" id="videoToggleIcon">▶</div>
+    <div class="video-toggle-icon" id="videoToggleIcon"><i class="fa-solid fa-play"></i></div>
 
 
 

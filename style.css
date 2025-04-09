@@ -249,7 +249,7 @@ section {
 
 @media (max-width: 768px) {
     .btn-group {
-        flex-direction: column !important;
+        flex-direction: row !important;
         align-items: center !important
     }
 
@@ -262,7 +262,7 @@ section {
 
 @media (max-width: 480px) {
     .btn-group {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .btn-group button {
@@ -345,7 +345,7 @@ section {
     }
 
     .mobile-carousel {
-      top: 56% !important;
+      top: 41% !important;
     }
   }
 
@@ -480,6 +480,15 @@ section {
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
+.video-toggle-icon i {
+    font-size: 15px; 
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .floating-video {
@@ -597,7 +606,7 @@ section {
     .about .about-content p {
         font-size: 16px;
         line-height: 1.6;
-        padding: 0 15px;
+        padding: 0 35px;
         text-align: justify;
     }
 
@@ -795,7 +804,7 @@ section {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 10px;
         padding: 0 15px;
     }
 
@@ -851,7 +860,7 @@ section {
 
     .video-wrapper {
         aspect-ratio: 1 / 16;
-        /* max-height: 400px; */
+        max-height: 400px;
         margin: auto;
         overflow: hidden;
         border-radius: 30px;
@@ -1086,11 +1095,11 @@ section {
 }
 
 .arrow.left {
-    left: 13px;
+    left: -21px;
 }
 
 .arrow.right {
-    right: 13px;
+    right: -21px;
 }
 
 /* Dots inside the box */
@@ -1172,12 +1181,12 @@ section {
     }
 
     .arrow.left {
-        left: -15px !important;
+        left: -18px !important;
         bottom: -10px !important;
     }
 
     .arrow.right {
-        right: -15px !important;
+        right: -18px !important;
         bottom: -10px !important;
     }
 }
@@ -1190,7 +1199,6 @@ section {
 .faq-section {
     margin: auto;
     padding: 50px 20px;
-    /* background-color: #fde9e8; */
 }
 
 .faq-section .accordion {
@@ -1203,6 +1211,13 @@ section {
     color: #ffffff;
 }
 
+/* Accordion Item Wrapper */
+.accordion-item {
+    background-color: transparent;
+    border: none !important;
+   
+}
+
 /* Accordion Button */
 .custom-accordion {
     background: #ffffff !important;
@@ -1212,30 +1227,32 @@ section {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
+    padding: 20px 25px;
     border: none !important;
     box-shadow: none !important;
     transition: border-bottom 0.3s ease;
 }
 
-/* Remove default arrow */
+/* Remove Bootstrap arrow */
 .custom-accordion::after {
     display: none !important;
 }
 
+/* Accordion Answer Text */
 .accordion-body {
-    margin-top: -5px; /* pulls it closer to question */
-    padding-top: 0;
-    padding-bottom: 10px;
     background: #ffffff !important;
     color: #1e1e1e;
+    font-size: 16px;
+    padding: 10px 20px 15px 25px;
+    margin-top: -15px;
 }
 
+/* Keep highlight on expanded */
 .accordion-button:not(.collapsed) {
     color: rgba(31, 31, 57, 1) !important;
 }
 
-/* Answer Button */
+/* Answer "+" button */
 .answer-btn {
     background-color: #ffd700;
     color: #000;
@@ -1245,25 +1262,15 @@ section {
     font-size: 16px;
 }
 
-
-
-/* Show only bottom border when expanded */
-.accordion-item {
-    border: none !important;
-}
-
-.accordion-item .accordion-collapse.show {
-    border-bottom: 1px solid linear-gradient(to bottom, #ff7e5f, #feb47b);
-}
-
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .faq-section .main-section {
         font-size: 32px;
     }
 
     .custom-accordion {
-        font-size: 14px;
-        padding: 20px 25px 6px 25px;
+        font-size: 15px;
+        padding: 15px 18px;
     }
 
     .answer-btn {
@@ -1273,23 +1280,28 @@ section {
 
     .accordion-body {
         font-size: 14px;
-        padding: 0px 25px 10px 19px
+        padding: 8px 18px 14px 18px;
+        margin-top: -6px;
     }
 }
 
 @media (max-width: 576px) {
+    .faq-section .main-section {
+        font-size: 23px;
+    }
+
     .custom-accordion {
-        padding: 12px 18px;
+        font-size: 14px;
+        padding: 14px 16px !important;
     }
 
     .accordion-body {
-        font-size: 14px;
-        margin-top: -1px;
-    }
-    .faq-section .main-section {
-        font-size: 23.2px;
+        font-size: 13.5px;
+        padding: 6px 16px 12px 16px !important;
+        margin-top: -10px !important;
     }
 }
+
 
 /* lets connect section starts here */
 .app-promo {
@@ -1325,7 +1337,7 @@ section {
 }
 
 .download-button-group .download-btn {
-    border: 2px solid #121212;
+    border: 2px solid #ffffff;
     background-color: transparent;
     padding: 15px 30px !important;
     border-radius: 10px;
@@ -1412,17 +1424,24 @@ section {
 
 @media (max-width: 576px) {
     .download-button-group {
-        flex-direction: column;
+        flex-direction: row !important;
         gap: 10px;
+        flex-wrap: nowrap;
     }
 
     .download-button-group .download-btn {
-        padding: 12px 20px;
+        padding: 12px 10px !important;
         font-size: 14px;
     }
 
     .app-promo {
         padding: 0px 20px 50px 20px;  
+    }
+
+    .download-button-group .download-btn img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
     }
 
     .mobile-img {
@@ -1443,49 +1462,49 @@ section {
     background-color: #121212;
     color: #FFFFFF;
     padding: 80px 20px;
-}
-
-.footer .container {
+  }
+  
+  .footer .container {
     border-top: 0.5px solid #444;
-}
-
-.footer a {
+  }
+  
+  .footer a {
     color: #aaa;
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-.footer a:hover {
+  }
+  
+  .footer a:hover {
     color: #ffffff !important;
-}
-
-.footer-logo {
+  }
+  
+  .footer-logo {
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.footer-logo img {
+  }
+  
+  .footer-logo img {
     width: 60px;
     height: auto;
-}
-
-.footer h5 {
+  }
+  
+  .footer h5 {
     color: #fff;
     font-weight: bold;
-}
-
-.social-icons a {
+  }
+  
+  .social-icons a {
     font-size: 20px;
     margin-right: 15px;
     color: #fff;
-}
-
-.social-icons a:hover {
+  }
+  
+  .social-icons a:hover {
     color: #ccc;
-}
-
-.store-buttons a {
+  }
+  
+  .store-buttons a {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -1496,37 +1515,43 @@ section {
     font-weight: bold;
     text-decoration: none;
     width: 160px;
-}
-
-.footer-links li a {
+  }
+  
+  .footer-links li a {
     display: inline-block;
     width: 100%;
     padding: 5px 0;
     color: #aaa;
-}
-
-.footer-links li a:hover {
+  }
+  
+  .footer-links li a:hover {
     color: #fff;
-}
-
-.store-buttons img {
+  }
+  
+  .store-buttons img {
     width: 24px;
     height: 24px;
-}
-
-footer .store-buttons a:hover {
+  }
+  
+  footer .store-buttons a:hover {
     background-color: #0e7dff !important;
     color: white;
-}
-
-@media (max-width: 768px) {
+  }
+  
+  @media (max-width: 768px) {
     .store-buttons {
-        flex-direction: row !important;
-        align-items: flex-start;
+      flex-direction: row !important;
+      justify-content: flex-start;
+      width: 100%;
     }
+  
+    .store-buttons a {
+      flex: 1;
+      justify-content: center;
+      text-align: center;
+    }
+  
     .footer {
-        background-color: #121212;
-        color: #FFFFFF;
-        padding: 60px 20px;
+      padding: 60px 20px;
     }
-}
+  }
