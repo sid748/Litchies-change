@@ -1066,6 +1066,24 @@ section {
         /* Center align text */
         padding: 20px
     }
+
+    .why-choose h2 {
+        font-size: 30px;
+    }
+    .why-choose p {
+        font-size: 16px;
+    }
+    .icon-box {
+        font-size: 25px;
+        background: white;
+        color: #007bff;
+        padding: 15px;
+        border-radius: 50%;
+        display: inline-flex
+    ;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 /* Testimonial slider code here */
