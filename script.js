@@ -93,8 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
           },
           1200: {
             slidesPerView: 5,
-            centeredSlides: false,
-            spaceBetween: 20,
+            centeredSlides: true,
+            spaceBetween: 0,
           },
         },
         resistanceRatio: 0.7,
