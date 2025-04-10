@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             centeredSlides: true,
             spaceBetween: 0,
           },
+        
         },
         resistanceRatio: 0.7,
         touchReleaseOnEdges: false,
