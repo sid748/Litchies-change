@@ -479,7 +479,7 @@ section {
     }
   
     .mobile-carousel {
-      top: 84% !important;
+      top: 80% !important;
     }
   
     .swiper-slide-prev {
@@ -828,7 +828,20 @@ section {
 /* ====================
    Responsive Styles
 ==================== */
+@media (min-width:1400px) {
+    .left {
+        top: 63%;
+        left: -17%;
+        transform: translateY(-50%);
+    }
 
+    .right {
+        top: 63%;
+        right: -17%;
+        transform: translateY(-50%);
+    }
+    
+}
 
 @media (max-width: 1200px) {
     .cashback-title {
