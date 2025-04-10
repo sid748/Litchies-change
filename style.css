@@ -414,7 +414,7 @@ section {
     .swiper-slide img {
       width: 100%;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      transform: scale(1);    
+      transform: scale(1.1);    
     }
   
     .swiper-slide-active {
@@ -422,7 +422,7 @@ section {
     }
   
     .swiper-slide-active img {
-      transform: scale(1.23) translateY(-6px);
+      transform: scale(1.34) translateY(-6px);
       opacity: 1;
       margin-left: 0 !important;
       margin-right: 0 !important;
