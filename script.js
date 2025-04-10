@@ -199,17 +199,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const fullscreenBtn = document.getElementById("fullscreenBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    // Ensure video is muted on load and autoplay
+    // Ensure video is muted and autoplay
     video.muted = true;
     video.play().catch((err) => {
         console.warn("Autoplay blocked:", err);
     });
 
-    // Set initial icons
-    muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>'; // muted
-    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    // Set correct mute icon
+    muteBtn.innerHTML = video.muted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
 
-    // Play / Pause toggle
+    // Play/Pause toggle
     playPauseBtn.addEventListener("click", () => {
         if (video.paused) {
             video.play();
@@ -220,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Mute / Unmute toggle
+    // Mute toggle
     muteBtn.addEventListener("click", () => {
         video.muted = !video.muted;
         muteBtn.innerHTML = video.muted
@@ -249,30 +248,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // On fullscreen change (enter/exit)
+    // Handle fullscreen changes (fix for Android scroll freeze)
     document.addEventListener("fullscreenchange", () => {
         const isFullscreen = !!document.fullscreenElement;
+
         videoContainer.classList.toggle("fullscreen", isFullscreen);
 
         if (!isFullscreen) {
-            // Reset styles and allow scroll again
-            videoContainer.style.width = "";
-            videoContainer.style.height = "";
-
-            document.body.style.overflow = "auto";
-            document.documentElement.style.overflow = "auto";
+            // Restore scrolling
+            document.body.style.overflow = "";
             document.body.style.position = "";
+            document.body.style.height = "auto";
+            document.documentElement.style.overflow = "";
             document.documentElement.style.position = "";
+            document.documentElement.style.height = "auto";
 
-            // Trigger reflow (fix for some mobile devices)
+            // Force scroll reflow (Android fix)
             setTimeout(() => {
-                window.scrollBy(0, 1);
-                window.scrollBy(0, -1);
+                window.scrollTo(0, 1);
+                window.scrollTo(0, 0);
             }, 100);
         }
     });
 
-    // Optional: Re-apply fullscreen dimensions on orientation change
+    // Orientation change (fullscreen fix)
     window.addEventListener("orientationchange", () => {
         if (document.fullscreenElement) {
             setTimeout(() => {
@@ -282,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Close floating video
+    // Close video
     closeBtn.addEventListener("click", () => {
         if (document.fullscreenElement) {
             document.exitFullscreen?.().catch(() => {});
@@ -292,26 +291,29 @@ document.addEventListener("DOMContentLoaded", function () {
         videoContainer.style.display = "none";
         videoToggleIcon.style.display = "flex";
 
-        // Restore scroll
-        document.body.style.overflow = "auto";
-        document.documentElement.style.overflow = "auto";
+        // Restore scrolling
+        document.body.style.overflow = "";
         document.body.style.position = "";
+        document.body.style.height = "auto";
+        document.documentElement.style.overflow = "";
         document.documentElement.style.position = "";
+        document.documentElement.style.height = "auto";
+
+        // Android Chrome reflow
+        setTimeout(() => {
+            window.scrollTo(0, 1);
+            window.scrollTo(0, 0);
+        }, 100);
     });
 
-    // Reopen video from toggle icon
+    // Reopen video
     videoToggleIcon.addEventListener("click", () => {
         videoContainer.style.display = "flex";
         videoToggleIcon.style.display = "none";
         video.play();
-
-        // Make sure scroll is unlocked
-        document.body.style.overflow = "auto";
-        document.documentElement.style.overflow = "auto";
-        document.body.style.position = "";
-        document.documentElement.style.position = "";
     });
 });
+
 
 
 
