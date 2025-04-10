@@ -194,73 +194,132 @@ document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("floatingVideo");
     const videoContainer = document.getElementById("videoContainer");
     const videoToggleIcon = document.getElementById("videoToggleIcon");
-
     const playPauseBtn = document.getElementById("playPauseBtn");
     const muteBtn = document.getElementById("muteBtn");
     const fullscreenBtn = document.getElementById("fullscreenBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    // Autoplay handling
+    // Initial playback
     video.muted = true;
-    video.play().catch(err => console.warn("Autoplay blocked:", err));
+    video.play().catch((err) => {
+        console.warn("Autoplay blocked:", err);
+    });
 
-    // Update icons
-    muteBtn.innerHTML = video.muted ? `<i class="fas fa-volume-mute"></i>` : `<i class="fas fa-volume-up"></i>`;
+    // Set initial icons
+    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+    muteBtn.innerHTML = video.muted
+        ? '<i class="fa-solid fa-volume-xmark"></i>'
+        : '<i class="fa-solid fa-volume-high"></i>';
 
+    // Play/Pause toggle
     playPauseBtn.addEventListener("click", () => {
         if (video.paused) {
             video.play();
-            playPauseBtn.innerHTML = `<i class="fas fa-pause"></i>`;
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
         } else {
             video.pause();
-            playPauseBtn.innerHTML = `<i class="fas fa-play"></i>`;
+            playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
         }
     });
 
+    // Mute/Unmute toggle
     muteBtn.addEventListener("click", () => {
         video.muted = !video.muted;
-        muteBtn.innerHTML = video.muted ? `<i class="fas fa-volume-mute"></i>` : `<i class="fas fa-volume-up"></i>`;
+        muteBtn.innerHTML = video.muted
+            ? '<i class="fa-solid fa-volume-xmark"></i>'
+            : '<i class="fa-solid fa-volume-high"></i>';
     });
 
+    // Fullscreen
     fullscreenBtn.addEventListener("click", () => {
         if (!document.fullscreenElement) {
-            videoContainer.requestFullscreen?.() || videoContainer.webkitRequestFullscreen?.() || videoContainer.msRequestFullscreen?.();
+            if (videoContainer.requestFullscreen) {
+                videoContainer.requestFullscreen();
+            } else if (videoContainer.webkitRequestFullscreen) {
+                videoContainer.webkitRequestFullscreen();
+            } else if (videoContainer.msRequestFullscreen) {
+                videoContainer.msRequestFullscreen();
+            }
         } else {
-            document.exitFullscreen?.() || document.webkitExitFullscreen?.() || document.msExitFullscreen?.();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
         }
     });
 
-    document.addEventListener("fullscreenchange", () => {
+    // Detect fullscreen exit to restore styles
+    function handleFullscreenChange() {
         const isFullscreen = !!document.fullscreenElement;
         videoContainer.classList.toggle("fullscreen", isFullscreen);
-    });
 
-    window.addEventListener("orientationchange", () => {
-        if (document.fullscreenElement) {
+        if (!isFullscreen) {
+            // Remove fullscreen styles
+            videoContainer.style.removeProperty("width");
+            videoContainer.style.removeProperty("height");
+            videoContainer.style.removeProperty("top");
+            videoContainer.style.removeProperty("left");
+            videoContainer.style.removeProperty("bottom");
+            videoContainer.style.removeProperty("right");
+
+            // ✅ Restore scrolling
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+
+            // ✅ Force reflow for mobile scroll fix
             setTimeout(() => {
-                videoContainer.style.width = "100vw";
-                videoContainer.style.height = "100vh";
-            }, 300);
+                document.body.scrollTop += 1;
+                document.body.scrollTop -= 1;
+            }, 50);
         }
-    });
+    }
 
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    // Close video
     closeBtn.addEventListener("click", () => {
         video.pause();
         videoContainer.style.display = "none";
         videoToggleIcon.style.display = "flex";
-        document.body.classList.remove("no-scroll");
+
+        // ✅ Restore scroll
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+        setTimeout(() => {
+            document.body.scrollTop += 1;
+            document.body.scrollTop -= 1;
+        }, 50);
     });
 
+    // Reopen video
     videoToggleIcon.addEventListener("click", () => {
         videoContainer.style.display = "flex";
         videoToggleIcon.style.display = "none";
-        video.play().catch(err => console.warn("Play failed:", err));
+        video.play().catch(() => {});
     });
 
-    // Prevent scroll freeze after closing video (just in case)
-    document.body.classList.remove("no-scroll");
-});
+    // Resume video if tab becomes visible again
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden && videoContainer.style.display !== "none") {
+            if (video.paused) video.play().catch(() => {});
+        }
+    });
 
+    // Fix for mobile orientation exit bug
+    window.addEventListener("orientationchange", () => {
+        setTimeout(() => {
+            if (!document.fullscreenElement) {
+                document.body.style.overflow = "";
+                document.documentElement.style.overflow = "";
+            }
+        }, 300);
+    });
+});
 
 
 // faq section starts here
