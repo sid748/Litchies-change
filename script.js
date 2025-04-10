@@ -189,75 +189,52 @@ function currentSlide(index) {
 setInterval(nextSlide, 5000);
 
 // floating video code here
+
 document.addEventListener("DOMContentLoaded", function () {
     const video = document.getElementById("floatingVideo");
     const videoContainer = document.getElementById("videoContainer");
     const videoToggleIcon = document.getElementById("videoToggleIcon");
+
     const playPauseBtn = document.getElementById("playPauseBtn");
     const muteBtn = document.getElementById("muteBtn");
     const fullscreenBtn = document.getElementById("fullscreenBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    // Ensure video is muted on load
+    // Autoplay handling
     video.muted = true;
-    video.play().catch((err) => {
-        console.warn("Autoplay blocked:", err);
-    });
+    video.play().catch(err => console.warn("Autoplay blocked:", err));
 
-    // Set correct mute icon
-    muteBtn.textContent = video.muted ? "🔇" : "🔊";
+    // Update icons
+    muteBtn.innerHTML = video.muted ? `<i class="fas fa-volume-mute"></i>` : `<i class="fas fa-volume-up"></i>`;
 
-    // Toggle play/pause
     playPauseBtn.addEventListener("click", () => {
         if (video.paused) {
             video.play();
-            playPauseBtn.textContent = "❚❚";
+            playPauseBtn.innerHTML = `<i class="fas fa-pause"></i>`;
         } else {
             video.pause();
-            playPauseBtn.textContent = "▶";
+            playPauseBtn.innerHTML = `<i class="fas fa-play"></i>`;
         }
     });
 
-    // Toggle mute/unmute
     muteBtn.addEventListener("click", () => {
         video.muted = !video.muted;
-        muteBtn.textContent = video.muted ? "🔇" : "🔊";
+        muteBtn.innerHTML = video.muted ? `<i class="fas fa-volume-mute"></i>` : `<i class="fas fa-volume-up"></i>`;
     });
 
-    // Fullscreen handling (with cross-browser support)
     fullscreenBtn.addEventListener("click", () => {
         if (!document.fullscreenElement) {
-            if (videoContainer.requestFullscreen) {
-                videoContainer.requestFullscreen();
-            } else if (videoContainer.webkitRequestFullscreen) {
-                videoContainer.webkitRequestFullscreen();
-            } else if (videoContainer.msRequestFullscreen) {
-                videoContainer.msRequestFullscreen();
-            }
+            videoContainer.requestFullscreen?.() || videoContainer.webkitRequestFullscreen?.() || videoContainer.msRequestFullscreen?.();
         } else {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            } else if (document.msExitFullscreen) {
-                document.msExitFullscreen();
-            }
+            document.exitFullscreen?.() || document.webkitExitFullscreen?.() || document.msExitFullscreen?.();
         }
     });
 
-    // Toggle fullscreen class and reset on exit
     document.addEventListener("fullscreenchange", () => {
         const isFullscreen = !!document.fullscreenElement;
         videoContainer.classList.toggle("fullscreen", isFullscreen);
-
-        // Clear any inline styles on exit
-        if (!isFullscreen) {
-            videoContainer.style.width = "";
-            videoContainer.style.height = "";
-        }
     });
 
-    // Optional: Handle orientation changes while fullscreen
     window.addEventListener("orientationchange", () => {
         if (document.fullscreenElement) {
             setTimeout(() => {
@@ -267,20 +244,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Close floating video
     closeBtn.addEventListener("click", () => {
         video.pause();
         videoContainer.style.display = "none";
         videoToggleIcon.style.display = "flex";
+        document.body.classList.remove("no-scroll");
     });
 
-    // Reopen video
     videoToggleIcon.addEventListener("click", () => {
         videoContainer.style.display = "flex";
         videoToggleIcon.style.display = "none";
-        video.play();
+        video.play().catch(err => console.warn("Play failed:", err));
     });
+
+    // Prevent scroll freeze after closing video (just in case)
+    document.body.classList.remove("no-scroll");
 });
+
+
 
 // faq section starts here
 document.addEventListener("DOMContentLoaded", function () {

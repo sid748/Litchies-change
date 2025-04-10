@@ -54,6 +54,7 @@
     </nav>
 
     <!-- Hero Section -->
+     <section id="hero">
     <header class="hero-section text-center">
         <h1 class="pb-2">Introducing Litchies:<br> Your Smart Local <br>Shopping Companion</h1>
         <p class="pb-2">Every Shopping Visit Feels Like a Boss Move!</p>
@@ -66,6 +67,7 @@
                         alt=""> Play Store</button></a>
         </div>
     </header>
+</section>
 
     <!-- Mobile Carousel Section -->
     <section class="mobile-carousel">
@@ -528,7 +530,7 @@
             <div class="col-md-4 text-start">
               <h5 class="pb-1">Company</h5>
               <ul class="footer-links list-unstyled d-flex flex-wrap d-md-block">
-                <li class="w-50 pb-1"><a href="index.html">Home</a></li>
+                <li class="w-50 pb-1"><a href="#hero">Home</a></li>
                 <li class="w-50 pb-1"><a href="#about-us">About</a></li>
                 <li class="w-50 pb-1"><a href="#why-choose-us">Services</a></li>
                 <li class="w-50 pb-1"><a href="#app-promo">Contact</a></li>
@@ -560,7 +562,7 @@
                 <div class="d-flex align-items-center gap-2 mb-3">
                   <div class="social-icons">
                     <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                   </div>
                   <p class="mb-0">Let’s try out!</p>
@@ -587,15 +589,18 @@
             Your browser does not support the video tag.
         </video>
         <div class="controls">
-            <button id="playPauseBtn">❚❚</button>
-            <button id="muteBtn">🔊</button>
-            <button id="fullscreenBtn">⛶</button>
-            <button id="closeBtn">×</button>
+            <button id="playPauseBtn"><i class="fas fa-pause"></i></button>
+            <button id="muteBtn"><i class="fas fa-volume-up"></i></button>
+            <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
+            <button id="closeBtn"><i class="fas fa-times"></i></button>
         </div>
     </div>
-
+    
     <!-- Play Icon (shown when video is closed) -->
-    <div class="video-toggle-icon" id="videoToggleIcon"><i class="fa-solid fa-play"></i></div>
+    <div class="video-toggle-icon" id="videoToggleIcon">
+        <i class="fas fa-play"></i>
+    </div>
+    
 
 
 
