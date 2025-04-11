@@ -266,9 +266,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Force scroll reflow (Android fix)
             setTimeout(() => {
-                window.scrollTo(0, 1);
-                window.scrollTo(0, 0);
-            }, 100);
+                const scrollX = window.scrollX;
+                const scrollY = window.scrollY;
+              
+                // This forces a reflow without any visual jump
+                window.scrollTo({ top: scrollY + 1, left: scrollX, behavior: 'auto' });
+                window.scrollTo({ top: scrollY, left: scrollX, behavior: 'auto' });
+              }, 100);
+              
+              
+              
         }
     });
 

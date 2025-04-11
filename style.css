@@ -359,6 +359,7 @@ section {
       top: 48% !important;
     }
   }
+
   
 
   @media (min-width: 600px) and (max-width: 768px) {
@@ -394,7 +395,7 @@ section {
   
   @media (min-width: 768px) and (max-width: 992px) {
     .swiper-slide {
-      width: 38.5% !important;
+      width: 39% !important;
       transition: transform 0.3s ease;
       display: flex;
       justify-content: center;
@@ -412,13 +413,13 @@ section {
     }
   
     .mobile-carousel {
-      top: 78% !important;
+      top: 45% !important;
     }
   }
   
   @media (min-width: 992px) and (max-width: 1200px) {
     .swiper-slide {
-      width: 25.8% !important;
+      width: 25.4% !important;
       transition: transform 0.3s ease;
       display: flex;
       justify-content: center;
@@ -436,7 +437,7 @@ section {
     }
   
     .mobile-carousel {
-      top: 92% !important;
+      top: 46% !important;
     }
     .swiper-wrapper {
         gap: 18px;
