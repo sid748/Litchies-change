@@ -395,7 +395,7 @@ section {
   
   @media (min-width: 768px) and (max-width: 992px) {
     .swiper-slide {
-      width: 39.1% !important;
+      width: 37.8vw !important;
       transition: transform 0.3s ease;
       display: flex;
       justify-content: center;
