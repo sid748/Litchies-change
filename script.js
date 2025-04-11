@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 count = target;
                 clearInterval(interval);
             }
-            counter.innerText = Math.floor(count) + "+"; // Added "+" after the number
+            counter.innerText = Math.floor(count) + "+";
         }, 20);
     }
 
@@ -135,13 +135,13 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".counter").forEach(counter => {
             let rect = counter.getBoundingClientRect();
             if (rect.top < window.innerHeight && !counter.dataset.animated) {
-                counter.dataset.animated = "true"; // Prevents multiple animations
+                counter.dataset.animated = "true"; 
                 animateCounter(counter);
             }
         });
     }
 
-    // Debounce function to improve performance
+    
     function debounce(func, delay) {
         let timeout;
         return function () {
@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("scroll", debounce(handleScroll, 100));
-    handleScroll(); // Runs once on page load to check visibility
+    handleScroll(); 
 });
 
 
@@ -200,13 +200,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const fullscreenBtn = document.getElementById("fullscreenBtn");
     const closeBtn = document.getElementById("closeBtn");
 
-    // Ensure video is muted and autoplay
+   
     video.muted = true;
     video.play().catch((err) => {
         console.warn("Autoplay blocked:", err);
     });
 
-    // Set correct mute icon
+    
     muteBtn.innerHTML = video.muted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>';
 
     // Play/Pause toggle
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Handle fullscreen changes (fix for Android scroll freeze)
+  
     document.addEventListener("fullscreenchange", () => {
         const isFullscreen = !!document.fullscreenElement;
 
@@ -264,12 +264,12 @@ document.addEventListener("DOMContentLoaded", function () {
             document.documentElement.style.position = "";
             document.documentElement.style.height = "auto";
 
-            // Force scroll reflow (Android fix)
+          
             setTimeout(() => {
                 const scrollX = window.scrollX;
                 const scrollY = window.scrollY;
               
-                // This forces a reflow without any visual jump
+           
                 window.scrollTo({ top: scrollY + 1, left: scrollX, behavior: 'auto' });
                 window.scrollTo({ top: scrollY, left: scrollX, behavior: 'auto' });
               }, 100);
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Orientation change (fullscreen fix)
+   
     window.addEventListener("orientationchange", () => {
         if (document.fullscreenElement) {
             setTimeout(() => {
