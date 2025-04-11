@@ -399,7 +399,7 @@ section {
       transition: transform 0.3s ease;
       display: flex;
       justify-content: center;
-      margin: auto;
+      margin:auto;
     }
   
     .swiper-slide img {
